@@ -18,7 +18,7 @@
 
 class Grid: public Entity {
 	public:
-		Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding);
+		Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding);
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
@@ -26,7 +26,7 @@ class Grid: public Entity {
 	private:
 		Timer timer;
 		Scene* parent;
-		Point2 origin;
+		Point2* origin;
 		Hexagon* hexagon;
 		int hexRadius;
 		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..

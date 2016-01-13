@@ -44,4 +44,5 @@ void MainMenu::update(float deltaTime) {
 
 void MainMenu::startGame() {
 	SuperScene::activescene = 1;
+	playerList[0]->setActive(true);
 }

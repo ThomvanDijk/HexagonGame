@@ -13,7 +13,7 @@
 #include "superscene.h"
 #include <rt2d/text.h>
 #include "basicentity.h"
-#include "planet.h"
+#include "grid.h"
 
 class GameScene: public SuperScene {
 	public:
@@ -22,8 +22,10 @@ class GameScene: public SuperScene {
 		virtual void update(float deltaTime);
 
 	private:
-		Planet* planet;
+		Scene* parent;
 		Point2* origin;
+		Grid* grid;
+		Timer timer;
 		int turn;
 };
 

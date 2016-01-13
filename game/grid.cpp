@@ -15,7 +15,7 @@
 
 using namespace std;
 
-Grid::Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding) : Entity() {
+Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding) : Entity() {
 	this->parent = parent;
 	this->origin = origin;
 	this->hexRadius = hexRadius;
@@ -35,8 +35,8 @@ Grid::Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding)
 			int yCoord = row - half;
 
 			//precise position
-			float xPos = (int)(origin.x + xOff * (col * 2 + 1 - cols));
-			float yPos = (int)(origin.y + yOff * (row - half) * 3);
+			float xPos = (int)(origin->x + xOff * (col * 2 + 1 - cols));
+			float yPos = (int)(origin->y + yOff * (row - half) * 3);
 
 			//Create hexagon.
 			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, hexRadius, owner);

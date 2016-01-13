@@ -11,8 +11,6 @@
 #include <vector>
 #include "mainmenu.h"
 #include "gamescene.h"
-#include "planet.h"
-#include "player.h"
 
 using namespace std;
 

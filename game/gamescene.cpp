@@ -9,13 +9,18 @@
 
 #include "gamescene.h"
 #include "superscene.h"
-#include "planet.h"
+
+using namespace std;
 
 GameScene::GameScene() : SuperScene() {
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
-	planet = new Planet(this, *origin);
-	addChild(planet);
+	//planet = new Planet(this, *origin);
+	//addChild(planet);
 	turn = 0;
+
+	//The padding is -0.67f because I got problems with the borders of the hexes looking black.
+	grid = new Grid(this, origin, 100, 20, -0.67f);
+	addChild(grid);
 
 	//Text doesn't work for now..
 	/*std::string turnText = "Turn: ";
@@ -27,10 +32,17 @@ GameScene::GameScene() : SuperScene() {
 }
 
 GameScene::~GameScene() {
-	removeChild(planet);
-	delete planet;
+	removeChild(grid);
+	delete grid;
 }
 
 void GameScene::update(float deltaTime) {
 	SuperScene::moveCamera(deltaTime);
+
+	int s = playerList.size();
+	for (int i = 0; i < s; i++) {
+		if (playerList[i]->getActive() && !playerList[i]->getStarted()) {
+			cout << "test" << endl;
+		}
+	}
 }

@@ -14,7 +14,9 @@ class Player: public Entity {
 		virtual ~Player();
 		virtual void update(float deltaTime);
 		virtual void setStarted(bool s) { started = s; }
+		virtual bool getStarted() { return started; }
 		virtual void setActive(bool a) { active = a; }
+		virtual bool getActive() { return active; }
 	
 	private:
 		int red;

@@ -181,8 +181,6 @@ add_executable(game
 	game/mainmenu.h
 	game/superscene.cpp
 	game/superscene.h
-	game/planet.cpp
-	game/planet.h
 	game/gamescene.cpp
 	game/gamescene.h
 	game/basicentity.cpp

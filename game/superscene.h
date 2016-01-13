@@ -27,7 +27,7 @@ class SuperScene: public Scene {
 		static int activescene;
 
 		// must be explicitly called from subclass
-		void addPlayerList(vector<Player*> p) { playerList = p; };
+		void addPlayerList(vector<Player*> p) { playerList = p; }
 
 	protected:
 		vector<Player*> playerList;
