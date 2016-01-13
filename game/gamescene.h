@@ -10,7 +10,6 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include <vector>
 #include "superscene.h"
 #include <rt2d/text.h>
 #include "basicentity.h"
@@ -25,6 +24,7 @@ class GameScene: public SuperScene {
 	private:
 		Planet* planet;
 		Point2* origin;
+		int turn;
 };
 
 #endif /* GAMESCENE_H */ 

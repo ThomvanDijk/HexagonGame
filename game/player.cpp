@@ -9,6 +9,8 @@ Player::Player() : Entity() {
 	red = 0;
 	green = 0;
 	blue = 0;
+	started = false;
+	active = false;
 }
 
 Player::~Player() {

@@ -11,6 +11,7 @@
 #include <iostream>
 #include "basicentity.h"
 #include "hexagon.h"
+#include "player.h"
 
 using namespace std;
 
@@ -19,7 +20,6 @@ Grid::Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding)
 	this->origin = origin;
 	this->hexRadius = hexRadius;
 	lastHovered = 0;
-	noStartBase = true;
 
 	double xOff = cos(30 * DEG_TO_RAD) * (hexRadius + padding);
 	double yOff = sin(30 * DEG_TO_RAD) * (hexRadius + padding);
@@ -71,12 +71,11 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && klicked && noStartBase) {
+		if (parent->input()->getMouseDown(0) && klicked) {
 			lastHex->setRGB(255, 0, 0);
 			lastHex->setOwner(1);
 			klicked = false;
 			cout << lastHex->getOwner() << endl;
-			noStartBase = false;
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.

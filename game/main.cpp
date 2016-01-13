@@ -8,23 +8,36 @@
  */
 
 #include <rt2d/core.h>
-
+#include <vector>
 #include "mainmenu.h"
 #include "gamescene.h"
 #include "planet.h"
 #include "player.h"
 
+using namespace std;
+
 int main(void) {
 	// Core instance
 	Core core;
 
-	Player* player;
-	player = new Player();
+	int numberOfPlayers = 2;
 
-	std::vector<SuperScene*> scenes;
+	vector<SuperScene*> scenes;
 	scenes.push_back(new MainMenu());
 	scenes.push_back(new GameScene());
 	int s = scenes.size();
+
+	vector<Player*> playerList;
+
+	for (int i = 0; i < numberOfPlayers; i++) {
+		Player* p = new Player(); // create a new Bullet on the heap
+		playerList.push_back(p);
+	}
+
+	// add our Player to the (Super)Scenes to keep track of it
+	for (int i = 0; i < s; i++) {
+		scenes[i]->addPlayerList(playerList);
+	}
 
 	// start running with the first Scene
 	SuperScene* scene = scenes[0];

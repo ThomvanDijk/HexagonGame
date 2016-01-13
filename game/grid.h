@@ -14,6 +14,7 @@
 #include <rt2d/scene.h>
 #include "basicentity.h"
 #include "hexagon.h"
+#include "player.h"
 
 class Grid: public Entity {
 	public:
@@ -30,7 +31,6 @@ class Grid: public Entity {
 		int hexRadius;
 		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int lastHovered;
-		bool noStartBase;
 };
 
 #endif /* GRID */ 

@@ -24,7 +24,7 @@ MainMenu::MainMenu() : SuperScene() {
 
 	//Title text.
 	text[0]->message("Hexes and Colors");
-	text[0]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
+	text[0]->position = Point2(SWIDTH / 2 - 240, SHEIGHT / 2 - 250);
 	text[0]->scale = Point2(1, 1);
 }
 

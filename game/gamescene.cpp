@@ -15,6 +15,15 @@ GameScene::GameScene() : SuperScene() {
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 	planet = new Planet(this, *origin);
 	addChild(planet);
+	turn = 0;
+
+	//Text doesn't work for now..
+	/*std::string turnText = "Turn: ";
+	turnText.append(std::to_string(turn));
+
+	text[1]->message("TESTETETST");
+	text[1]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
+	text[1]->scale = Point2(1, 1);*/
 }
 
 GameScene::~GameScene() {
