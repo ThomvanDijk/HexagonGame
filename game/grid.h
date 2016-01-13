@@ -12,7 +12,6 @@
 
 #include <rt2d/timer.h>
 #include <rt2d/scene.h>
-//#include <rt2d/text.h>
 #include "basicentity.h"
 #include "hexagon.h"
 
@@ -29,9 +28,9 @@ class Grid: public Entity {
 		Point2 origin;
 		Hexagon* hexagon;
 		int hexRadius;
-		int frameNumber;
+		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int lastHovered;
-		//std::vector<Text*> text;
+		bool noStartBase;
 };
 
 #endif /* GRID */ 

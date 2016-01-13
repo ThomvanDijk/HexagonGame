@@ -19,8 +19,7 @@ Grid::Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding)
 	this->origin = origin;
 	this->hexRadius = hexRadius;
 	lastHovered = 0;
-
-	//parent->   
+	noStartBase = true;
 
 	double xOff = cos(30 * DEG_TO_RAD) * (hexRadius + padding);
 	double yOff = sin(30 * DEG_TO_RAD) * (hexRadius + padding);
@@ -39,10 +38,8 @@ Grid::Grid(Scene* parent, Point2 origin, int size, int hexRadius, float padding)
 			float xPos = (int)(origin.x + xOff * (col * 2 + 1 - cols));
 			float yPos = (int)(origin.y + yOff * (row - half) * 3);
 
-			//create random number for the Hexagon, range 0-63
-			frameNumber = rand() % 1;
 			//Create hexagon.
-			hexagon = new Hexagon(xCoord, yCoord, xPos, yPos, hexRadius, frameNumber);
+			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, hexRadius, owner);
 
 			//to the Entity vector<Sprite*> _spritebatch
 			_spritebatch.push_back(hexagon); 
@@ -74,10 +71,12 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && klicked) {
-			lastHex->setFrame(2);
+		if (parent->input()->getMouseDown(0) && klicked && noStartBase) {
+			lastHex->setRGB(255, 0, 0);
+			lastHex->setOwner(1);
 			klicked = false;
-			cout << lastHex->getFrame() << endl;
+			cout << lastHex->getOwner() << endl;
+			noStartBase = false;
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.

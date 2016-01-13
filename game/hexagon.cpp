@@ -10,29 +10,38 @@
 #include "hexagon.h"
 #include "sprite.h"
 #include <rt2d/config.h>
+#include "superscene.h"
 #include <iostream>
 
 RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
 
-Hexagon::Hexagon(int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int frame) : Sprite() {
+Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner) : Sprite() {
+	this->parent = parent;
 	this->xCoord = xCoord;
 	this->yCoord = yCoord;
-	this->frame = frame;
+	this->owner = owner;
+
+	red = 0;
+	green = 0;
+	blue = 0;
+
 	mouseDistance = 0;
 
 	setupCircleSprite(AUTOGENWHITE, hexRadius, 6);
 	spriteposition = Point2(xPos, yPos);
 
-	//1/8 = 0.125 - 0.002 because of margin issues, this sprite sheet is 8x8 so it only shows one sprite
-	//uvdim = Point(0.123f, 0.123f);
-	//uvoffset moves the spritesheet to the correct sprite
-	//uvoffset = Point(-0.4375f, -0.4375f);
-	
-	//0 is no filter used for pixelart
-	//filter(0);
-	//wrap(0);
-	
-	//hexFrame(frame);
+	//Here I create text to show the coords of the hexes.
+	/*std::string coordinates = "x";
+	coordinates.append(std::to_string(xCoord));
+	coordinates.append(" , y");
+	coordinates.append(std::to_string(yCoord));
+
+	Text* line = new Text();
+	line->message(coordinates);
+	line->position = Point2(xPos - hexRadius/2, yPos);
+	line->scale = Point2(0.2f, 0.2f);
+	text.push_back(line);
+	parent->addChild(line);*/
 }
 
 Hexagon::~Hexagon() {
@@ -40,29 +49,12 @@ Hexagon::~Hexagon() {
 }
 
 void Hexagon::update(float deltaTime) {
-	this->color = colors[this->frame];
+	this->color = RGBAColor(red, green, blue);
 }
 
-void Hexagon::setFrame(int frame) {
-	this->frame = frame;
-	//hexFrame(frame);
-}
-
-void Hexagon::hexFrame(int frame) {
-	this->frame = frame;
-
-	int w = 1.0f / uvdim.x; //width = 8
-	int h = 1.0f / uvdim.y; //height = 8
-
-	//if there are more frames than sprites than frame = 0
-	if (frame >= w*h) { frame = 0; }
-
-	int ypos = frame / w;
-	int xpos = frame % w;
-
-	//- 0.4375f because by default the spritesheet is centered in the middle
-	//+ 0.002f because I extracted 0.002f from the uvdim due to margin issues
-	uvoffset.x = xpos * (uvdim.x + 0.002f) - 0.4375f;
-	uvoffset.y = ypos * (uvdim.y + 0.002f) - 0.4375f;
+void Hexagon::setRGB(int red, int green, int blue) {
+	this->red = red;
+	this->green = green;
+	this->blue = blue;
 }
 

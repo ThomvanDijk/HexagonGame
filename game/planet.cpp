@@ -8,11 +8,11 @@
  */
 
 #include "planet.h"
-#include "grid.h"
 #include <iostream>
 #include "basicentity.h"
+#include "superscene.h"
 
-//RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
+using namespace std;
 
 Planet::Planet(Scene* parent, Point2 origin): Entity() {
 	this->parent = parent;

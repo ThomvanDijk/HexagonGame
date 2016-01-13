@@ -10,21 +10,22 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <functional>
 #include <rt2d/timer.h>
 #include <rt2d/scene.h>
 #include "basicentity.h"
 
 class Button: public Entity {
 	public:
-		Button(Point2 size, Point2 pos, Scene* parent, void (*action)());
+		Button(Point2 size, Point2 pos, Scene* parent, std::function<void()> action);
 		virtual ~Button();
 		virtual void update(float deltaTime);
 	
 	private:
+		std::function<void()> action;
 		Timer timer;
 		BasicEntity* button;
 		Scene* parent;
-		void (*action)();
 		Point2 pos;
 		Point2 size;
 };

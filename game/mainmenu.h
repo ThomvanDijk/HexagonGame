@@ -21,6 +21,7 @@ class MainMenu: public SuperScene {
 		MainMenu();
 		virtual ~MainMenu();
 		virtual void update(float deltaTime);
+		virtual void startGame();
 	
 	private:
 		Button* startButton;

@@ -193,6 +193,8 @@ add_executable(game
 	game/hexagon.h
 	game/grid.cpp
 	game/grid.h
+	game/player.cpp
+	game/player.h
 )
 target_link_libraries(game
 	${ALL_LIBS}

@@ -11,10 +11,15 @@
 
 #include "mainmenu.h"
 #include "gamescene.h"
+#include "planet.h"
+#include "player.h"
 
 int main(void) {
 	// Core instance
 	Core core;
+
+	Player* player;
+	player = new Player();
 
 	std::vector<SuperScene*> scenes;
 	scenes.push_back(new MainMenu());

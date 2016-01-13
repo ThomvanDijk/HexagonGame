@@ -13,21 +13,17 @@
 #include <rt2d/scene.h>
 #include <iostream>
 
-void Startgame() {
-	SuperScene::activescene = 1;
-}
-
 MainMenu::MainMenu() : SuperScene() {
-	startButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2 - 100), this, &Startgame);
-	optionsButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2), this, &Startgame);
-	quitButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2 + 100), this, &Startgame);
+	startButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2 - 100), this, std::bind(&MainMenu::startGame, this));
+	optionsButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2), this, std::bind(&MainMenu::startGame, this));
+	quitButton = new Button(Point2(256, 64), Point2(SWIDTH / 2, SHEIGHT / 2 + 100), this, std::bind(&MainMenu::startGame, this));
 
 	addChild(startButton);
 	addChild(optionsButton);
 	addChild(quitButton);
 
 	//Title text.
-	text[0]->message("Planetary Extraction");
+	text[0]->message("Hexes and Colors");
 	text[0]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
 	text[0]->scale = Point2(1, 1);
 }
@@ -46,5 +42,6 @@ void MainMenu::update(float deltaTime) {
 	
 }
 
-
-
+void MainMenu::startGame() {
+	SuperScene::activescene = 1;
+}

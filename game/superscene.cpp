@@ -22,10 +22,9 @@ SuperScene::SuperScene() : Scene() {
 
 	for (unsigned int i = 0; i < 8; i++) {
 		Text* line = new Text();
-		//line->message("");
+		//line->message("Development Build");
 		//line->position = Point2(50, 30*(i+2));
-		line->scale = Point2(0.5f, 0.5f);
-		
+		//line->scale = Point2(0.5f, 0.5f);
 		text.push_back(line);
 		layers[top_layer]->addChild(line);
 	}

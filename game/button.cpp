@@ -10,7 +10,7 @@
 #include "button.h"
 #include <iostream>
 
-Button::Button(Point2 size, Point2 pos, Scene* parent, void (*action)()) : Entity() {
+Button::Button(Point2 size, Point2 pos, Scene* parent, std::function<void()> action) : Entity() {
 	this->parent = parent;
 	this->action = action;
 	this->pos = pos;
