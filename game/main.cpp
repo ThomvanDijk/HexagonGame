@@ -8,6 +8,7 @@
  */
 
 #include <rt2d/core.h>
+#include <time.h>
 #include <vector>
 #include "mainmenu.h"
 #include "gamescene.h"
@@ -17,6 +18,9 @@ using namespace std;
 int main(void) {
 	// Core instance
 	Core core;
+
+	int seed = static_cast<int>(time(0));
+	srand(seed);
 
 	int numberOfPlayers = 2;
 

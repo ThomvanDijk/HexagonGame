@@ -21,9 +21,9 @@ Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, 
 	this->yCoord = yCoord;
 	this->owner = owner;
 
-	red = 0;
-	green = 0;
-	blue = 0;
+	red = 255;
+	green = 255;
+	blue = 255;
 
 	mouseDistance = 0;
 

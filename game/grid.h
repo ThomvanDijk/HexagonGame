@@ -12,9 +12,12 @@
 
 #include <rt2d/timer.h>
 #include <rt2d/scene.h>
+#include <vector>
 #include "basicentity.h"
 #include "hexagon.h"
 #include "player.h"
+
+using namespace std;
 
 class Grid: public Entity {
 	public:
@@ -22,8 +25,16 @@ class Grid: public Entity {
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
+		virtual void setActivePlayer(int a) { activePlayer = a; }
+
+		// must be explicitly called from subclass
+		void addPlayerList(vector<Player*> p) { playerList = p; }
+
+	protected:
+		vector<Player*> playerList;
 	
 	private:
+		RGBAColor playerColor;
 		Timer timer;
 		Scene* parent;
 		Point2* origin;
@@ -31,6 +42,7 @@ class Grid: public Entity {
 		int hexRadius;
 		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int lastHovered;
+		int activePlayer;
 };
 
 #endif /* GRID */ 

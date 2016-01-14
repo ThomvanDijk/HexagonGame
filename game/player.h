@@ -7,6 +7,9 @@
 #define PLAYER_H
 
 #include <rt2d/entity.h>
+#include <vector>
+
+using namespace std;
 
 class Player: public Entity {
 	public:
@@ -17,11 +20,17 @@ class Player: public Entity {
 		virtual bool getStarted() { return started; }
 		virtual void setActive(bool a) { active = a; }
 		virtual bool getActive() { return active; }
+
+		virtual RGBAColor getRGBAColor() { return playerColor; }
+		//virtual int getRed() { return red; }
+		//virtual int getGreen() { return green; }
+		//virtual int getBlue() { return blue; }
 	
 	private:
-		int red;
-		int green;
-		int blue;
+		RGBAColor playerColor;
+		//int red;
+		//int green;
+		//int blue;
 		bool started;
 		bool active;
 };
