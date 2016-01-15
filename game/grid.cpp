@@ -24,7 +24,6 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding
 	
 	lastHovered = 0;
 	activePlayer = 0;
-	playerColor = RGBAColor(0, 0, 0);
 
 	double xOff = cos(30 * DEG_TO_RAD) * (hexRadius + padding);
 	double yOff = sin(30 * DEG_TO_RAD) * (hexRadius + padding);
@@ -77,9 +76,14 @@ void Grid::update(float deltaTime) {
 		
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && klicked) {
-			playerColor = playerList[activePlayer]->getColor();
-			lastHex->setColor(playerColor);
+			lastHex->setColor(playerList[activePlayer]->getColor());
 			lastHex->setOwner(activePlayer + 1);
+			klicked = false;
+		}
+
+		if (parent->input()->getMouseDown(1) && klicked) {
+			lastHex->setColor(playerList[activePlayer+1]->getColor());
+			lastHex->setOwner(activePlayer + 2);
 			klicked = false;
 		}
 
@@ -89,7 +93,7 @@ void Grid::update(float deltaTime) {
 		}
 
 		else {
-			lastHex->color = GRAY;
+			lastHex->color = playerList[activePlayer]->getColor();
 		}
 	}
 

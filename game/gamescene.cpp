@@ -38,7 +38,7 @@ void GameScene::update(float deltaTime) {
 	int s = playerList.size();
 	if (playerListAdded) {
 		for (int i = 0; i < s; i++) {
-			if (playerList[i]->getActive() && !playerList[i]->getStarted()) {
+			if (playerList[i]->getActive()) {
 				grid->setActivePlayer(i);
 				//cout << "test" << endl;
 			}
@@ -47,7 +47,7 @@ void GameScene::update(float deltaTime) {
 	//Here the list with players is given to grid.
 	if (s >= 0 && !playerListAdded) {
 		//The padding is -0.67f because I got problems with the borders of the hexes looking black.
-		grid = new Grid(this, origin, 50, 20, -0.67f, playerList);
+		grid = new Grid(this, origin, 13, 35, -0.36f, playerList);
 		addChild(grid);
 
 		playerListAdded = true;

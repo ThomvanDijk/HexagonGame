@@ -24,32 +24,27 @@ Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, 
 	this->owner = owner;
 	this->playerList = playerList;
 
+	mouseDistance = 0;
+
 	int s = playerList.size();
 	for (int i = 0; i < s; i++) {
 		colorList.push_back(playerList[i]->getColor());
 	}
 
-	if (rand() % 100 > 90) {
-		hexColor = colorList[rand() % s];
-	}
-	else {
-		hexColor = RGBAColor(255, 255, 255);
-	}
-
-	mouseDistance = 0;
+	hexColor = RGBAColor(255, 255, 255);
 
 	setupCircleSprite(AUTOGENWHITE, hexRadius, 6);
 	spriteposition = Point2(xPos, yPos);
-
+	
 	//Here I create text to show the coords of the hexes.
-	/*std::string coordinates = "x";
+	/*string coordinates = "x";
 	coordinates.append(std::to_string(xCoord));
 	coordinates.append(" , y");
 	coordinates.append(std::to_string(yCoord));
 
 	Text* line = new Text();
 	line->message(coordinates);
-	line->position = Point2(xPos - hexRadius/2, yPos);
+	line->position = Point2(xPos - hexRadius / 2, yPos);
 	line->scale = Point2(0.2f, 0.2f);
 	text.push_back(line);
 	parent->addChild(line);*/

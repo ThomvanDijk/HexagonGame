@@ -29,11 +29,10 @@ class Grid: public Entity {
 
 	private:
 		vector<Player*> playerList;
-		RGBAColor playerColor;
-		Timer timer;
+		Hexagon* hexagon;
 		Scene* parent;
 		Point2* origin;
-		Hexagon* hexagon;
+		Timer timer;
 		int hexRadius;
 		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int lastHovered;
