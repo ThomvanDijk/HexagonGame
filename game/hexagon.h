@@ -15,10 +15,13 @@
 #include <rt2d/timer.h>
 #include <rt2d/text.h>
 #include "sprite.h"
+#include "player.h"
+
+using namespace std;
 
 class Hexagon: public Sprite {
 	public:
-		Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner);
+		Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner, vector<Player*> playerList);
 		virtual ~Hexagon();
 		virtual float getMouseDistance() { return mouseDistance; };
 		virtual void setMouseDistance(float distance) { mouseDistance = distance; };
@@ -27,20 +30,20 @@ class Hexagon: public Sprite {
 		virtual void Hexagon::setOwner(int owner) { this->owner = owner; }
 		virtual int getxCoord() { return xCoord; };
 		virtual int getyCoord() { return yCoord; };
-		virtual void setRGB(int red, int green, int blue);
+		virtual void setColor(RGBAColor color) { hexColor = color; }
 
 	private:
-		std::vector<Text*> text;
+		vector<Player*> playerList;
+		vector<RGBAColor> colorList;
+		vector<Text*> text;
 		Scene* parent;
 		Timer timer;
 		Sprite* hexagon;
+		RGBAColor hexColor;
 		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int xCoord;
 		int yCoord;
 		float mouseDistance;
-		int red;
-		int green;
-		int blue;
 };
 
 #endif /* HEXAGON */ 

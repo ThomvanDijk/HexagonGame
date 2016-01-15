@@ -8,9 +8,6 @@
 Player::Player() : Entity() {
 	//Here the colors are randomly set to a range from 30 to 255.
 	playerColor = RGBAColor(rand() % 226 + 30, rand() % 226 + 30, rand() % 226 + 30);
-	//RGBColor.push_back(rand() % 226 + 30);
-	//RGBColor.push_back(rand() % 226 + 30);
-	//RGBColor.push_back(rand() % 226 + 30);
 
 	started = false;
 	active = false;

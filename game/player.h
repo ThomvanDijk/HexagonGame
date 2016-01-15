@@ -20,17 +20,10 @@ class Player: public Entity {
 		virtual bool getStarted() { return started; }
 		virtual void setActive(bool a) { active = a; }
 		virtual bool getActive() { return active; }
-
-		virtual RGBAColor getRGBAColor() { return playerColor; }
-		//virtual int getRed() { return red; }
-		//virtual int getGreen() { return green; }
-		//virtual int getBlue() { return blue; }
+		virtual RGBAColor getColor() { return playerColor; }
 	
 	private:
 		RGBAColor playerColor;
-		//int red;
-		//int green;
-		//int blue;
 		bool started;
 		bool active;
 };

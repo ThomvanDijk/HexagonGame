@@ -32,7 +32,7 @@ int main(void) {
 	vector<Player*> playerList;
 
 	for (int i = 0; i < numberOfPlayers; i++) {
-		Player* p = new Player(); // create a new Bullet on the heap
+		Player* p = new Player(); // create a new Player on the heap
 		playerList.push_back(p);
 	}
 

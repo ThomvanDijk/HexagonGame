@@ -15,13 +15,8 @@ using namespace std;
 
 GameScene::GameScene() : SuperScene() {
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
+	playerListAdded = false;
 	turn = 0;
-
-	//The padding is -0.67f because I got problems with the borders of the hexes looking black.
-	grid = new Grid(this, origin, 50, 20, -0.67f);
-	addChild(grid);
-
-	grid->addPlayerList(playerList);
 
 	//Text doesn't work for now..
 	/*std::string turnText = "Turn: ";
@@ -41,10 +36,20 @@ void GameScene::update(float deltaTime) {
 	SuperScene::moveCamera(deltaTime);
 
 	int s = playerList.size();
-	for (int i = 0; i < s; i++) {
-		if (playerList[i]->getActive() && !playerList[i]->getStarted()) {
-			grid->setActivePlayer(i);
-			//cout << "test" << endl;
+	if (playerListAdded) {
+		for (int i = 0; i < s; i++) {
+			if (playerList[i]->getActive() && !playerList[i]->getStarted()) {
+				grid->setActivePlayer(i);
+				//cout << "test" << endl;
+			}
 		}
+	}
+	//Here the list with players is given to grid.
+	if (s >= 0 && !playerListAdded) {
+		//The padding is -0.67f because I got problems with the borders of the hexes looking black.
+		grid = new Grid(this, origin, 50, 20, -0.67f, playerList);
+		addChild(grid);
+
+		playerListAdded = true;
 	}
 }

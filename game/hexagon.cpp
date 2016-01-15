@@ -12,18 +12,29 @@
 #include <rt2d/config.h>
 #include "superscene.h"
 #include <iostream>
+#include "player.h"
+#include <vector>
 
 RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
 
-Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner) : Sprite() {
+Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner, vector<Player*> playerList) : Sprite() {
 	this->parent = parent;
 	this->xCoord = xCoord;
 	this->yCoord = yCoord;
 	this->owner = owner;
+	this->playerList = playerList;
 
-	red = 255;
-	green = 255;
-	blue = 255;
+	int s = playerList.size();
+	for (int i = 0; i < s; i++) {
+		colorList.push_back(playerList[i]->getColor());
+	}
+
+	if (rand() % 100 > 90) {
+		hexColor = colorList[rand() % s];
+	}
+	else {
+		hexColor = RGBAColor(255, 255, 255);
+	}
 
 	mouseDistance = 0;
 
@@ -49,12 +60,6 @@ Hexagon::~Hexagon() {
 }
 
 void Hexagon::update(float deltaTime) {
-	this->color = RGBAColor(red, green, blue);
-}
-
-void Hexagon::setRGB(int red, int green, int blue) {
-	this->red = red;
-	this->green = green;
-	this->blue = blue;
+	this->color = hexColor;
 }
 

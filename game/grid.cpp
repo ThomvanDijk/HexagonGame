@@ -16,10 +16,12 @@
 
 using namespace std;
 
-Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding) : Entity() {
+Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding, vector<Player*> playerList) : Entity() {
 	this->parent = parent;
 	this->origin = origin;
+	this->playerList = playerList;
 	this->hexRadius = hexRadius;
+	
 	lastHovered = 0;
 	activePlayer = 0;
 	playerColor = RGBAColor(0, 0, 0);
@@ -42,7 +44,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding
 			float yPos = (int)(origin->y + yOff * (row - half) * 3);
 
 			//Create hexagon.
-			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, hexRadius, owner);
+			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, hexRadius, owner, playerList);
 
 			//to the Entity vector<Sprite*> _spritebatch
 			_spritebatch.push_back(hexagon); 
@@ -75,15 +77,8 @@ void Grid::update(float deltaTime) {
 		
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && klicked) {
-			//if (playerList[activePlayer]) {
-				//cout << "click" << endl;
-			//}
-			//playerList[0]->getRGBAColor()
-			
-			playerColor = RGBAColor(0, 0, 0);
-			//cout << playerColor << endl;
-			//cout << &playerList[1] << endl;
-			lastHex->setRGB(30, 256, 30);
+			playerColor = playerList[activePlayer]->getColor();
+			lastHex->setColor(playerColor);
 			lastHex->setOwner(activePlayer + 1);
 			klicked = false;
 		}
