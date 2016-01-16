@@ -25,10 +25,10 @@ class SuperScene: public Scene {
 		// must be explicitly called from subclass
 		virtual void update(float deltaTime);
 		static int activescene;
-		void addPlayerList(vector<Player*> p) { playerList = p; }
+		void addPlayer(Player* p) { player = p; }
 
 	protected:
-		vector<Player*> playerList;
+		Player* player;
 		unsigned int top_layer;
 		std::vector<BasicEntity*> layers;
 		std::vector<Text*> text;

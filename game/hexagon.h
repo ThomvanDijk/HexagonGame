@@ -21,26 +21,22 @@ using namespace std;
 
 class Hexagon: public Sprite {
 	public:
-		Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner, vector<Player*> playerList);
+		Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, Player* player);
 		virtual ~Hexagon();
 		virtual float getMouseDistance() { return mouseDistance; };
 		virtual void setMouseDistance(float distance) { mouseDistance = distance; };
 		virtual void update(float deltaTime);
-		virtual int getOwner() { return owner; };
-		virtual void Hexagon::setOwner(int owner) { this->owner = owner; }
+		//virtual int getFrame() { return frame; };
+		//virtual void setFrame(int f) { frame = f; };
 		virtual int getxCoord() { return xCoord; };
 		virtual int getyCoord() { return yCoord; };
-		virtual void setColor(RGBAColor color) { hexColor = color; }
 
 	private:
-		vector<Player*> playerList;
-		vector<RGBAColor> colorList;
+		Player* player;
 		vector<Text*> text;
 		Scene* parent;
 		Timer timer;
 		Sprite* hexagon;
-		RGBAColor hexColor;
-		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
 		int xCoord;
 		int yCoord;
 		float mouseDistance;

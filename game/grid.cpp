@@ -16,17 +16,16 @@
 
 using namespace std;
 
-Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding, vector<Player*> playerList) : Entity() {
+Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player) : Entity() {
 	this->parent = parent;
 	this->origin = origin;
-	this->playerList = playerList;
-	this->hexRadius = hexRadius;
+	this->player = player;
+	this->hexWidth = hexWidth;
 	
 	lastHovered = 0;
-	activePlayer = 0;
 
-	double xOff = cos(30 * DEG_TO_RAD) * (hexRadius + padding);
-	double yOff = sin(30 * DEG_TO_RAD) * (hexRadius + padding);
+	double xOff = cos(30 * DEG_TO_RAD) * (hexWidth + padding);
+	double yOff = sin(30 * DEG_TO_RAD) * (hexHeight + padding);
 	int half = size / 2;
 
 	//create the grid
@@ -42,8 +41,12 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding
 			float xPos = (int)(origin->x + xOff * (col * 2 + 1 - cols));
 			float yPos = (int)(origin->y + yOff * (row - half) * 3);
 
-			//Create hexagon.
-			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, hexRadius, owner, playerList);
+			//create hexagon
+			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, player);
+
+			//set frame
+			int f = rand() % 3;
+			hexagon->frame(f);
 
 			//to the Entity vector<Sprite*> _spritebatch
 			_spritebatch.push_back(hexagon); 
@@ -76,14 +79,13 @@ void Grid::update(float deltaTime) {
 		
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && klicked) {
-			lastHex->setColor(playerList[activePlayer]->getColor());
-			lastHex->setOwner(activePlayer + 1);
+			lastHex->frame(1);
 			klicked = false;
 		}
 
 		if (parent->input()->getMouseDown(1) && klicked) {
-			lastHex->setColor(playerList[activePlayer+1]->getColor());
-			lastHex->setOwner(activePlayer + 2);
+			
+			lastHex->frame(12);
 			klicked = false;
 		}
 
@@ -93,7 +95,7 @@ void Grid::update(float deltaTime) {
 		}
 
 		else {
-			lastHex->color = playerList[activePlayer]->getColor();
+			lastHex->color = GREEN;
 		}
 	}
 

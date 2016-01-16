@@ -17,25 +17,18 @@
 
 RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
 
-Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, int hexRadius, int owner, vector<Player*> playerList) : Sprite() {
+Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, Player* player) : Sprite() {
 	this->parent = parent;
 	this->xCoord = xCoord;
 	this->yCoord = yCoord;
-	this->owner = owner;
-	this->playerList = playerList;
+	this->player = player;
 
 	mouseDistance = 0;
 
-	int s = playerList.size();
-	for (int i = 0; i < s; i++) {
-		colorList.push_back(playerList[i]->getColor());
-	}
-
-	hexColor = RGBAColor(255, 255, 255);
-
-	setupCircleSprite(AUTOGENWHITE, hexRadius, 6);
+	//setupCircleSprite("assets/default.tga", hexRadius, 6);
+	setupSprite("assets/default.tga", 0.5, 0.5, 0.125, 0.125, 0, 0);
 	spriteposition = Point2(xPos, yPos);
-	
+
 	//Here I create text to show the coords of the hexes.
 	/*string coordinates = "x";
 	coordinates.append(std::to_string(xCoord));
@@ -55,6 +48,5 @@ Hexagon::~Hexagon() {
 }
 
 void Hexagon::update(float deltaTime) {
-	this->color = hexColor;
+	
 }
-

@@ -22,23 +22,16 @@ int main(void) {
 	int seed = static_cast<int>(time(0));
 	srand(seed);
 
-	int numberOfPlayers = 2;
-
 	vector<SuperScene*> scenes;
 	scenes.push_back(new MainMenu());
 	scenes.push_back(new GameScene());
 	int s = scenes.size();
 
-	vector<Player*> playerList;
-
-	for (int i = 0; i < numberOfPlayers; i++) {
-		Player* p = new Player(); // create a new Player on the heap
-		playerList.push_back(p);
-	}
+	Player* p = new Player(); // create a new Player on the heap
 
 	// add our Player to the (Super)Scenes to keep track of it
 	for (int i = 0; i < s; i++) {
-		scenes[i]->addPlayerList(playerList);
+		scenes[i]->addPlayer(p);
 	}
 
 	// start running with the first Scene

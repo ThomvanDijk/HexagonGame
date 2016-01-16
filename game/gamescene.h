@@ -26,8 +26,6 @@ class GameScene: public SuperScene {
 		Point2* origin;
 		Grid* grid;
 		Timer timer;
-		int turn;
-		bool playerListAdded;
 };
 
 #endif /* GAMESCENE_H */ 

@@ -21,22 +21,20 @@ using namespace std;
 
 class Grid: public Entity {
 	public:
-		Grid(Scene* parent, Point2* origin, int size, int hexRadius, float padding, vector<Player*> playerList);
+		Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player);
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
-		virtual void setActivePlayer(int a) { activePlayer = a; }
 
 	private:
-		vector<Player*> playerList;
+		Player* player;
 		Hexagon* hexagon;
 		Scene* parent;
 		Point2* origin;
 		Timer timer;
-		int hexRadius;
-		int owner; //0 = nobody, 1 = player1, 2 = player2, etc..
+		int hexWidth;
+		int hexHeight;
 		int lastHovered;
-		int activePlayer;
 };
 
 #endif /* GRID */ 
