@@ -13,6 +13,7 @@
 #include "superscene.h"
 #include <rt2d/text.h>
 #include "basicentity.h"
+#include "hud.h"
 #include "grid.h"
 
 class GameScene: public SuperScene {
@@ -25,6 +26,7 @@ class GameScene: public SuperScene {
 		Scene* parent;
 		Point2* origin;
 		Grid* grid;
+		Hud* hud;
 		Timer timer;
 };
 

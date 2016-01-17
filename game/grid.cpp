@@ -66,6 +66,7 @@ void Grid::update(float deltaTime) {
 		Hexagon* thisHex = (Hexagon*)_spritebatch[i];
 		Hexagon* lastHex = (Hexagon*)_spritebatch[lastHovered];
 		
+		thisHex->color = WHITE;
 		thisHex->update(deltaTime);
 
 		float mousex = parent->input()->getMouseX() + parent->camera()->position.x - SWIDTH / 2;
@@ -85,7 +86,7 @@ void Grid::update(float deltaTime) {
 
 		if (parent->input()->getMouseDown(1) && klicked) {
 			
-			lastHex->frame(12);
+			lastHex->frame(3);
 			klicked = false;
 		}
 
@@ -95,7 +96,7 @@ void Grid::update(float deltaTime) {
 		}
 
 		else {
-			lastHex->color = GREEN;
+			lastHex->color = GRAY;
 		}
 	}
 

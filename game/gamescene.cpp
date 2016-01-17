@@ -19,6 +19,9 @@ GameScene::GameScene() : SuperScene() {
 	grid = new Grid(this, origin, 13, 57, 44, 0, player);
 	addChild(grid);
 
+	hud = new Hud();
+	addChild(hud);
+
 	//Text doesn't work for now..
 	/*std::string turnText = "Turn: ";
 	turnText.append(std::to_string(turn));
@@ -30,10 +33,16 @@ GameScene::GameScene() : SuperScene() {
 
 GameScene::~GameScene() {
 	removeChild(grid);
+	removeChild(hud);
 	delete grid;
+	delete hud;
 }
 
 void GameScene::update(float deltaTime) {
 	SuperScene::moveCamera(deltaTime);
+
+	Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
+
+	hud->position = Point2(cam_pos.x - SWIDTH / 2, cam_pos.y - SHEIGHT / 2);
 
 }

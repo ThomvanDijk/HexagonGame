@@ -183,6 +183,8 @@ add_executable(game
 	game/superscene.h
 	game/gamescene.cpp
 	game/gamescene.h
+	game/hud.cpp
+	game/hud.h
 	game/basicentity.cpp
 	game/basicentity.h
 	game/button.cpp
