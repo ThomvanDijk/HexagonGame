@@ -80,7 +80,7 @@ void Grid::update(float deltaTime) {
 		
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && loaded) {
-			lastHex->frame(2);
+			lastHex->frame(player->getSelectedBuilding());
 		}
 
 		if (parent->input()->getMouseDown(1) && loaded) {

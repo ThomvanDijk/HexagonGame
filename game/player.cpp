@@ -6,11 +6,7 @@
 #include "player.h"
 
 Player::Player() : Entity() {
-	//Here the colors are randomly set to a range from 30 to 255.
-	playerColor = RGBAColor(rand() % 226 + 30, rand() % 226 + 30, rand() % 226 + 30);
-
-	started = false;
-	active = false;
+	selectedBuilding = 0;
 }
 
 Player::~Player() {

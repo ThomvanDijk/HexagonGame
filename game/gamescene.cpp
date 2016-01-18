@@ -13,13 +13,15 @@
 
 using namespace std;
 
-GameScene::GameScene() : SuperScene() {
+GameScene::GameScene(Player* player) : SuperScene() {
+	this->player = player;
+
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 
 	grid = new Grid(this, origin, 13, 57, 44, 0, player);
 	addChild(grid);
 
-	hud = new Hud(this);
+	hud = new Hud(this, player);
 	addChild(hud);
 
 	//Text doesn't work for now..

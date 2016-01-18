@@ -5,10 +5,12 @@
 
 #include "hud.h"
 #include "circlebutton.h"
+//#include "player.h"
 
 using namespace std;
 
-Hud::Hud(Scene* parent) : Entity() {
+Hud::Hud(Scene* parent, Player* player) : Entity() {
+	this->player = player;
 	this->parent = parent;
 	numberOfBuildings = 14;
 
@@ -33,7 +35,7 @@ Hud::Hud(Scene* parent) : Entity() {
 		Point size = Point(50, 50);
 		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
 
-		circleButton = new CircleButton(size, pos, parent);
+		circleButton = new CircleButton(size, pos, parent, i, player);
 		addChild(circleButton);
 	}
 }

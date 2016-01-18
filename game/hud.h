@@ -9,12 +9,13 @@
 #include <rt2d/entity.h>
 #include "basicentity.h"
 #include "circlebutton.h"
+#include "player.h"
 
 using namespace std;
 
 class Hud: public Entity {
 	public:
-		Hud(Scene* parent);
+		Hud(Scene* parent, Player* player);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 	
@@ -24,6 +25,7 @@ class Hud: public Entity {
 		int numberOfBuildings;
 		CircleButton* circleButton;
 		Scene* parent;
+		Player* player;
 
 };
 

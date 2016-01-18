@@ -13,18 +13,20 @@
 #include "superscene.h"
 #include <rt2d/text.h>
 #include "basicentity.h"
+#include "player.h"
 #include "hud.h"
 #include "grid.h"
 
 class GameScene: public SuperScene {
 	public:
-		GameScene();
+		GameScene(Player* player);
 		virtual ~GameScene();
 		virtual void update(float deltaTime);
 
 	private:
 		Scene* parent;
 		Point2* origin;
+		Player* player;
 		Grid* grid;
 		Hud* hud;
 		Timer timer;

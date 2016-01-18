@@ -16,16 +16,11 @@ class Player: public Entity {
 		Player();
 		virtual ~Player();
 		virtual void update(float deltaTime);
-		virtual void setStarted(bool s) { started = s; }
-		virtual bool getStarted() { return started; }
-		virtual void setActive(bool a) { active = a; }
-		virtual bool getActive() { return active; }
-		virtual RGBAColor getColor() { return playerColor; }
-	
+		virtual void setSelectedBuilding(int s) { selectedBuilding = s; }
+		virtual int getSelectedBuilding() { return selectedBuilding; }
+
 	private:
-		RGBAColor playerColor;
-		bool started;
-		bool active;
+		int selectedBuilding;
 };
 
 #endif /* PLAYER_H */ 

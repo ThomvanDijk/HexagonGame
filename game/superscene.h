@@ -14,7 +14,6 @@
 #include <rt2d/scene.h>
 #include <rt2d/text.h>
 #include "basicentity.h"
-#include "player.h"
 
 using namespace std;
 
@@ -25,10 +24,8 @@ class SuperScene: public Scene {
 		// must be explicitly called from subclass
 		virtual void update(float deltaTime);
 		static int activescene;
-		void addPlayer(Player* p) { player = p; }
 
 	protected:
-		Player* player;
 		unsigned int top_layer;
 		std::vector<BasicEntity*> layers;
 		std::vector<Text*> text;
