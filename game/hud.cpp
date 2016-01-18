@@ -4,8 +4,14 @@
  */
 
 #include "hud.h"
+#include "circlebutton.h"
 
-Hud::Hud() : Entity() {
+using namespace std;
+
+Hud::Hud(Scene* parent) : Entity() {
+	this->parent = parent;
+	numberOfBuildings = 14;
+
 	//Add the top part.
 	topBanner = new BasicEntity();
 	topBanner->addSprite(AUTOGENWHITE, 0.5, 0);
@@ -19,8 +25,17 @@ Hud::Hud() : Entity() {
 	bottomBanner->addSprite(AUTOGENWHITE, 0.5, 1);
 	bottomBanner->sprite()->size = Point2(SWIDTH / 1.5, SHEIGHT / 6);
 	bottomBanner->position = Point2(SWIDTH / 2, SHEIGHT);
-	//bottomBanner->sprite()->color = RED;
+	bottomBanner->sprite()->color = RED;
 	addChild(bottomBanner);
+
+	//add building buttons
+	for (int i = 0; i < numberOfBuildings; i++) {
+		Point size = Point(50, 50);
+		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
+
+		circleButton = new CircleButton(size, pos, parent);
+		addChild(circleButton);
+	}
 }
 
 Hud::~Hud() {

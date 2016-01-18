@@ -19,7 +19,7 @@ GameScene::GameScene() : SuperScene() {
 	grid = new Grid(this, origin, 13, 57, 44, 0, player);
 	addChild(grid);
 
-	hud = new Hud();
+	hud = new Hud(this);
 	addChild(hud);
 
 	//Text doesn't work for now..

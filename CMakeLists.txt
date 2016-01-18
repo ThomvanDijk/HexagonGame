@@ -189,6 +189,8 @@ add_executable(game
 	game/basicentity.h
 	game/button.cpp
 	game/button.h
+	game/circlebutton.cpp
+	game/circlebutton.h
 	game/hexagon.cpp
 	game/hexagon.h
 	game/grid.cpp

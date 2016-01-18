@@ -91,7 +91,6 @@ void Grid::update(float deltaTime) {
 		if (distance < lastHex->getMouseDistance()) {
 			lastHovered = i;
 		}
-
 		else {
 			lastHex->color = GRAY;
 		}
