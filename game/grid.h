@@ -25,6 +25,7 @@ class Grid: public Entity {
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
+		virtual void setLoaded(bool b) { loaded = b; }
 
 	private:
 		Player* player;
@@ -32,6 +33,7 @@ class Grid: public Entity {
 		Scene* parent;
 		Point2* origin;
 		Timer timer;
+		bool loaded;
 		int hexWidth;
 		int hexHeight;
 		int lastHovered;

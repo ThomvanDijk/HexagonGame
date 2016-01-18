@@ -8,6 +8,7 @@
  */
 
 #include "superscene.h"
+#include "gamescene.h"
 
 int SuperScene::activescene = 0;
 
@@ -71,19 +72,19 @@ void SuperScene::update(float deltaTime) {
 	// ###############################################################
 	// text follows camera
 	// ###############################################################
-	Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
+	//Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
 
-	unsigned int s = text.size();
-	for (unsigned int i = 0; i < s; i++) {
-		text[i]->position = Point2(cam_pos.x + 50 - SWIDTH/2, cam_pos.y + 50 + (30*i) - SHEIGHT/2);
-	}
+	//unsigned int s = text.size();
+	//for (unsigned int i = 0; i < s; i++) {
+		//text[i]->position = Point2(cam_pos.x + 50 - SWIDTH/2, cam_pos.y + 50 + (30*i) - SHEIGHT/2);
+	//}
 }
 
 void SuperScene::moveCamera(float deltaTime) {
 	// ###############################################################
 	// Move Camera (Arrow up, down, left, right)
 	// ###############################################################
-	float speed = 800.0f; // 600 units / second
+	float speed = 800.0f; // 800 units / second
 
 	// Right and Down vector
 	Point2 right = Point2(1, 0);

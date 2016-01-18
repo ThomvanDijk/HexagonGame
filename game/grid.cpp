@@ -23,6 +23,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 	this->hexWidth = hexWidth;
 	
 	lastHovered = 0;
+	loaded = false;
 
 	double xOff = cos(30 * DEG_TO_RAD) * (hexWidth + padding);
 	double yOff = sin(30 * DEG_TO_RAD) * (hexHeight + padding);
@@ -45,7 +46,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, player);
 
 			//set frame
-			int f = rand() % 3;
+			int f = rand() % 1;
 			hexagon->frame(f);
 
 			//to the Entity vector<Sprite*> _spritebatch
@@ -60,7 +61,6 @@ Grid::~Grid() {
 
 void Grid::update(float deltaTime) {
 	int batchSize = _spritebatch.size();
-	bool klicked = true;
 
 	for (int i = 0; i < batchSize; i++) {
 		Hexagon* thisHex = (Hexagon*)_spritebatch[i];
@@ -79,15 +79,12 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 		
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && klicked) {
-			lastHex->frame(1);
-			klicked = false;
+		if (parent->input()->getMouseDown(0) && loaded) {
+			lastHex->frame(2);
 		}
 
-		if (parent->input()->getMouseDown(1) && klicked) {
-			
+		if (parent->input()->getMouseDown(1) && loaded) {
 			lastHex->frame(3);
-			klicked = false;
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.
@@ -100,6 +97,9 @@ void Grid::update(float deltaTime) {
 		}
 	}
 
+	//Apperently if you have a bool to prevent a klick before the scene is loaded, you have 
+	//to set it true at the end of the update function. Now the klick is reset...
+	loaded = true;
 	gridRules(deltaTime);
 }
 

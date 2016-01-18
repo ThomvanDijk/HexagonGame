@@ -26,8 +26,6 @@ class Hexagon: public Sprite {
 		virtual float getMouseDistance() { return mouseDistance; };
 		virtual void setMouseDistance(float distance) { mouseDistance = distance; };
 		virtual void update(float deltaTime);
-		//virtual int getFrame() { return frame; };
-		//virtual void setFrame(int f) { frame = f; };
 		virtual int getxCoord() { return xCoord; };
 		virtual int getyCoord() { return yCoord; };
 

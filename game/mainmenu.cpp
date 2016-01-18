@@ -39,10 +39,11 @@ MainMenu::~MainMenu() {
 }
 
 void MainMenu::update(float deltaTime) {
+	SuperScene::update(deltaTime);
 	
 }
 
 void MainMenu::startGame() {
-	SuperScene::activescene = 1;
+	SuperScene::activescene ++;
 
 }

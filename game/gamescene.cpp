@@ -39,10 +39,10 @@ GameScene::~GameScene() {
 }
 
 void GameScene::update(float deltaTime) {
-	SuperScene::moveCamera(deltaTime);
-
+	//Let the hud follow the camera before the camera gets updated!
 	Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
-
 	hud->position = Point2(cam_pos.x - SWIDTH / 2, cam_pos.y - SHEIGHT / 2);
 
+	SuperScene::update(deltaTime);
+	SuperScene::moveCamera(deltaTime);
 }
