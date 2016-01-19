@@ -185,6 +185,8 @@ add_executable(game
 	game/gamescene.h
 	game/hud.cpp
 	game/hud.h
+	game/resources.cpp
+	game/resources.h
 	game/basicentity.cpp
 	game/basicentity.h
 	game/button.cpp

@@ -21,6 +21,7 @@ class Player: public Entity {
 
 	private:
 		int selectedBuilding;
+
 };
 
 #endif /* PLAYER_H */ 
