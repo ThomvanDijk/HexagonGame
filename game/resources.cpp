@@ -6,7 +6,7 @@
 #include "resources.h"
 
 Resources::Resources() : Entity() {
-	selectedBuilding = 0;
+	
 }
 
 Resources::~Resources() {

@@ -7,6 +7,8 @@
 #define HUD_H
 
 #include <rt2d/entity.h>
+#include <rt2d/text.h>
+
 #include "basicentity.h"
 #include "circlebutton.h"
 #include "player.h"
@@ -26,6 +28,7 @@ class Hud: public Entity {
 		CircleButton* circleButton;
 		Scene* parent;
 		Player* player;
+		Text* text;
 
 };
 

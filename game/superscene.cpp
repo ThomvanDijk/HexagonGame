@@ -23,14 +23,10 @@ SuperScene::SuperScene() : Scene() {
 
 	for (unsigned int i = 0; i < 8; i++) {
 		Text* line = new Text();
-		//line->message("Development Build");
-		//line->position = Point2(50, 30*(i+2));
-		//line->scale = Point2(0.5f, 0.5f);
 		text.push_back(line);
 		layers[top_layer]->addChild(line);
 	}
 }
-
 
 SuperScene::~SuperScene() {
 	int ls = layers.size();
@@ -52,44 +48,36 @@ SuperScene::~SuperScene() {
 
 // must be explicitly called from subclass
 void SuperScene::update(float deltaTime) {
-	// ###############################################################
-	// Escape key stops the Scene
-	// ###############################################################
+	//Escape key stops the Scene.
 	if (input()->getKeyUp( GLFW_KEY_ESCAPE )) {
 		this->stop();
 	}
 
-	// ###############################################################
-	// '[' and ']' switch scenes
-	// ###############################################################
+	//'[' and ']' switch scenes
 	if (input()->getKeyUp(GLFW_KEY_LEFT_BRACKET)) {
 		activescene--;
 	}
 	if (input()->getKeyUp(GLFW_KEY_RIGHT_BRACKET)) {
 		activescene++;
 	}
-	
-	// ###############################################################
-	// text follows camera
-	// ###############################################################
-	//Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
 
-	//unsigned int s = text.size();
-	//for (unsigned int i = 0; i < s; i++) {
-		//text[i]->position = Point2(cam_pos.x + 50 - SWIDTH/2, cam_pos.y + 50 + (30*i) - SHEIGHT/2);
-	//}
+	//text follows camera
+	Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
+
+	unsigned int s = text.size();
+	for (unsigned int i = 0; i < s; i++) {
+		text[i]->position = Point2(cam_pos.x + 50 - SWIDTH/2, cam_pos.y + 50 + (30*i) - SHEIGHT/2);
+	}
 }
 
 void SuperScene::moveCamera(float deltaTime) {
-	// ###############################################################
-	// Move Camera (Arrow up, down, left, right)
-	// ###############################################################
+	//Move Camera (Arrow up, down, left, right)
 	float speed = 800.0f; // 800 units / second
 
-	// Right and Down vector
+	//Right and Down vector
 	Point2 right = Point2(1, 0);
 	Point2 up = Point2(0, 1);
-	// Direction
+	//Direction
 	Vector2 direction = Vector2(0, 0);
 
 	if (input()->getKey(GLFW_KEY_UP)) {

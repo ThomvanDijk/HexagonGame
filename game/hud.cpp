@@ -13,6 +13,9 @@ Hud::Hud(Scene* parent, Player* player) : Entity() {
 	this->player = player;
 	this->parent = parent;
 	numberOfBuildings = 14;
+	
+	text = new Text();
+	addChild(text);
 
 	//Add the top part.
 	topBanner = new BasicEntity();
@@ -49,4 +52,10 @@ Hud::~Hud() {
 
 void Hud::update(float deltaTime) {
 	
+	string coordinates = "x";
+	coordinates.append(std::to_string(parent->camera()->position.x));
+	coordinates.append(" , y");
+	coordinates.append(std::to_string(parent->camera()->position.x));
+
+	text->message(coordinates);
 }

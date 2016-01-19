@@ -18,7 +18,7 @@ class Resources: public Entity {
 		virtual void update(float deltaTime);
 
 	private:
-		int selectedBuilding;
+		
 };
 
 #endif /* RESOURCES_H */ 

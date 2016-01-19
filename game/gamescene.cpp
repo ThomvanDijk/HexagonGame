@@ -10,6 +10,7 @@
 #include "gamescene.h"
 #include "superscene.h"
 #include "player.h"
+#include <iostream>
 
 using namespace std;
 
@@ -24,13 +25,9 @@ GameScene::GameScene(Player* player) : SuperScene() {
 	hud = new Hud(this, player);
 	addChild(hud);
 
-	//Text doesn't work for now..
-	/*std::string turnText = "Turn: ";
-	turnText.append(std::to_string(turn));
-
 	text[1]->message("TESTETETST");
-	text[1]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
-	text[1]->scale = Point2(1, 1);*/
+	//text[1]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
+	//text[1]->scale = Point2(1, 1);
 }
 
 GameScene::~GameScene() {
