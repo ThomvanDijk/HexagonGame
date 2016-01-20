@@ -10,10 +10,12 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include "superscene.h"
 #include <rt2d/text.h>
+
+#include "superscene.h"
 #include "basicentity.h"
 #include "player.h"
+#include "resources.h"
 #include "hud.h"
 #include "grid.h"
 
@@ -27,6 +29,7 @@ class GameScene: public SuperScene {
 		Scene* parent;
 		Point2* origin;
 		Player* player;
+		Resources* resources;
 		Grid* grid;
 		Hud* hud;
 		Timer timer;

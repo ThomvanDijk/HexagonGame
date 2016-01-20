@@ -22,12 +22,11 @@ GameScene::GameScene(Player* player) : SuperScene() {
 	grid = new Grid(this, origin, 13, 57, 44, 0, player);
 	addChild(grid);
 
-	hud = new Hud(this, player);
-	addChild(hud);
+	resources = new Resources();
+	addChild(resources);
 
-	text[1]->message("TESTETETST");
-	//text[1]->position = Point2(SWIDTH / 2 - 300, SHEIGHT / 2 - 250);
-	//text[1]->scale = Point2(1, 1);
+	hud = new Hud(this, player, resources);
+	addChild(hud);
 }
 
 GameScene::~GameScene() {

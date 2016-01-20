@@ -11,13 +11,14 @@
 
 #include "basicentity.h"
 #include "circlebutton.h"
+#include "resources.h"
 #include "player.h"
 
 using namespace std;
 
 class Hud: public Entity {
 	public:
-		Hud(Scene* parent, Player* player);
+		Hud(Scene* parent, Player* player, Resources* resources);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 	
@@ -26,9 +27,13 @@ class Hud: public Entity {
 		BasicEntity* bottomBanner;
 		int numberOfBuildings;
 		CircleButton* circleButton;
+		Resources* resources;
 		Scene* parent;
 		Player* player;
-		Text* text;
+		Text* woodText;
+		Text* stoneText;
+		Text* goldText;
+		Text* foodText;
 
 };
 

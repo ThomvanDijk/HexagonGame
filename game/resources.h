@@ -17,8 +17,12 @@ class Resources: public Entity {
 		virtual ~Resources();
 		virtual void update(float deltaTime);
 
-	private:
-		
+		//Public resources.
+		int wood;
+		int stone;
+		int gold;
+		int food;
+
 };
 
 #endif /* RESOURCES_H */ 

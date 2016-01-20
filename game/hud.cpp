@@ -9,20 +9,18 @@
 
 using namespace std;
 
-Hud::Hud(Scene* parent, Player* player) : Entity() {
+Hud::Hud(Scene* parent, Player* player, Resources* resources) : Entity() {
 	this->player = player;
 	this->parent = parent;
+	this->resources = resources;
 	numberOfBuildings = 14;
 	
-	text = new Text();
-	addChild(text);
-
 	//Add the top part.
 	topBanner = new BasicEntity();
 	topBanner->addSprite(AUTOGENWHITE, 0.5, 0);
 	topBanner->sprite()->size = Point2(SWIDTH / 1.5, SHEIGHT / 20);
 	topBanner->position = Point2(SWIDTH / 2, 0);
-	//topBanner->sprite()->color = RED;
+	topBanner->sprite()->color = RED;
 	addChild(topBanner);
 
 	//Add the bottom part.
@@ -32,6 +30,27 @@ Hud::Hud(Scene* parent, Player* player) : Entity() {
 	bottomBanner->position = Point2(SWIDTH / 2, SHEIGHT);
 	bottomBanner->sprite()->color = RED;
 	addChild(bottomBanner);
+
+	//Add text after the hud elements.
+	woodText = new Text();
+	addChild(woodText);
+	woodText->scale = Point2(0.4f, 0.4f);
+	woodText->position = Point2(topBanner->position.x - topBanner->sprite()->size.x / 2 + 18, topBanner->position.y + 18);
+
+	stoneText = new Text();
+	addChild(stoneText);
+	stoneText->scale = Point2(0.4f, 0.4f);
+	stoneText->position = Point2(topBanner->position.x - topBanner->sprite()->size.x / 2 + 148, topBanner->position.y + 18);
+
+	goldText = new Text();
+	addChild(goldText);
+	goldText->scale = Point2(0.4f, 0.4f);
+	goldText->position = Point2(topBanner->position.x - topBanner->sprite()->size.x / 2 + 288, topBanner->position.y + 18);
+
+	foodText = new Text();
+	addChild(foodText);
+	foodText->scale = Point2(0.4f, 0.4f);
+	foodText->position = Point2(topBanner->position.x - topBanner->sprite()->size.x / 2 + 418, topBanner->position.y + 18);
 
 	//add building buttons
 	for (int i = 0; i < numberOfBuildings; i++) {
@@ -51,11 +70,19 @@ Hud::~Hud() {
 }
 
 void Hud::update(float deltaTime) {
-	
-	string coordinates = "x";
-	coordinates.append(std::to_string(parent->camera()->position.x));
-	coordinates.append(" , y");
-	coordinates.append(std::to_string(parent->camera()->position.x));
+	string wood = "Wood: ";
+	wood.append(std::to_string(resources->wood));
+	woodText->message(wood);
 
-	text->message(coordinates);
+	string stone = "Stone: ";
+	stone.append(std::to_string(resources->stone));
+	stoneText->message(stone);
+
+	string gold = "Gold: ";
+	gold.append(std::to_string(resources->gold));
+	goldText->message(gold);
+
+	string food = "Food: ";
+	food.append(std::to_string(resources->food));
+	foodText->message(food);
 }
