@@ -7,10 +7,11 @@
  *     - What you did
  */
 
-#include "gamescene.h"
-#include "superscene.h"
-#include "player.h"
 #include <iostream>
+
+#include "gamescene.h"
+#include "superScene.h"
+#include "player.h"
 
 using namespace std;
 
@@ -42,5 +43,44 @@ void GameScene::update(float deltaTime) {
 	hud->position = Point2(cam_pos.x - SWIDTH / 2, cam_pos.y - SHEIGHT / 2);
 
 	SuperScene::update(deltaTime);
-	SuperScene::moveCamera(deltaTime);
+	moveCamera(deltaTime);
+
+	//text follows camera
+	/*Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
+
+	unsigned int s = text.size();
+	for (unsigned int i = 0; i < s; i++) {
+		text[i]->position = Point2(cam_pos.x + 50 - SWIDTH / 2, cam_pos.y + 50 + (30 * i) - SHEIGHT / 2);
+	}*/
+
+	if (input()->getKeyUp(GLFW_KEY_ESCAPE)) {
+		this->stop();
+	}
+}
+
+void GameScene::moveCamera(float deltaTime) {
+	//Move Camera (Arrow up, down, left, right)
+	float speed = 800.0f; // 800 units / second
+
+	//Right and Down vector
+	Point2 right = Point2(1, 0);
+	Point2 up = Point2(0, 1);
+	//Direction
+	Vector2 direction = Vector2(0, 0);
+
+	if (input()->getKey(GLFW_KEY_UP)) {
+		direction -= up;
+	}
+	if (input()->getKey(GLFW_KEY_DOWN)) {
+		direction += up;
+	}
+	if (input()->getKey(GLFW_KEY_RIGHT)) {
+		direction += right;
+	}
+	if (input()->getKey(GLFW_KEY_LEFT)) {
+		direction -= right;
+	}
+	direction.normalize();
+	direction *= deltaTime * speed;
+	camera()->position += direction;
 }

@@ -24,6 +24,7 @@ class GameScene: public SuperScene {
 		GameScene(Player* player);
 		virtual ~GameScene();
 		virtual void update(float deltaTime);
+		virtual void moveCamera(float deltaTime);
 
 	private:
 		Scene* parent;

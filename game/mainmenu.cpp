@@ -23,9 +23,9 @@ MainMenu::MainMenu() : SuperScene() {
 	addChild(quitButton);
 
 	//Title text.
-	text[0]->message("Hexes and Colors");
-	text[0]->position = Point2(SWIDTH / 2 - 240, SHEIGHT / 2 - 250);
-	text[0]->scale = Point2(1, 1);
+	//text[0]->message("Hexes and Colors");
+	//text[0]->position = Point2(SWIDTH / 2 - 240, SHEIGHT / 2 - 250);
+	//text[0]->scale = Point2(1, 1);
 }
 
 MainMenu::~MainMenu() {
@@ -40,6 +40,10 @@ MainMenu::~MainMenu() {
 
 void MainMenu::update(float deltaTime) {
 	SuperScene::update(deltaTime);
+
+	if (input()->getKeyUp(GLFW_KEY_ESCAPE)) {
+		this->stop();
+	}
 	
 }
 

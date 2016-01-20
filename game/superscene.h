@@ -10,10 +10,8 @@
 #ifndef SUPERSCENE_H
 #define SUPERSCENE_H
 
-#include <vector>
 #include <rt2d/scene.h>
 #include <rt2d/text.h>
-#include "basicentity.h"
 
 using namespace std;
 
@@ -21,15 +19,12 @@ class SuperScene: public Scene {
 	public:
 		SuperScene();
 		virtual ~SuperScene();
-		// must be explicitly called from subclass
 		virtual void update(float deltaTime);
 		static int activescene;
 
 	protected:
 		unsigned int top_layer;
-		std::vector<BasicEntity*> layers;
-		std::vector<Text*> text;
-		void moveCamera(float deltaTime);
+		Text* text;
 
 };
 

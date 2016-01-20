@@ -3,9 +3,8 @@
  *     - Initial commit
  */
 
-#include "hud.h"
 #include "circlebutton.h"
-//#include "player.h"
+#include "hud.h"
 
 using namespace std;
 
