@@ -13,6 +13,7 @@
 #include <rt2d/timer.h>
 #include <rt2d/scene.h>
 #include <vector>
+
 #include "basicentity.h"
 #include "hexagon.h"
 #include "player.h"

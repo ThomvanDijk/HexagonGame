@@ -199,6 +199,13 @@ add_executable(game
 	game/grid.h
 	game/player.cpp
 	game/player.h
+	game/building.cpp
+	game/building.h
+	
+	# Add buildings from sub folder
+	game/buildings/towncenter.cpp
+	game/buildings/towncenter.h
+	
 )
 target_link_libraries(game
 	${ALL_LIBS}
