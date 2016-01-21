@@ -33,11 +33,8 @@ CircleButton::~CircleButton() {
 void CircleButton::update(float deltaTime) {
 	circleButton->sprite()->color = WHITE;
 
-	float mousex = parent->input()->getMouseX() + parent->camera()->position.x - SWIDTH / 2;
-	float mousey = parent->input()->getMouseY() + parent->camera()->position.y - SHEIGHT / 2;
-
-	float subX = (circleButton->position.x - mousex);
-	float subY = (circleButton->position.y - mousey);
+	float subX = (circleButton->position.x - parent->input()->getMouseX());
+	float subY = (circleButton->position.y - parent->input()->getMouseY());
 
 	float distance = sqrt((subX * subX) + (subY * subY));
 

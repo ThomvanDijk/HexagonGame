@@ -25,9 +25,9 @@ Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, 
 
 	mouseDistance = 0;
 
-	//setupCircleSprite("assets/default.tga", hexRadius, 6);
-	setupSprite("assets/sprite_sheet.tga", 0.5, 0.5, 0.125, 0.125, 0, 0);
-	spriteposition = Point2(xPos, yPos);
+	setupSprite("assets/sprite_sheet.tga", 0.5, 0.78125, 0.125, 0.125, 0, 0);
+	spriteposition = Point(xPos, yPos);
+	spritescale = Point(3.5, 3.5);
 
 	//Here I create text to show the coords of the hexes.
 	/*string coordinates = "x";

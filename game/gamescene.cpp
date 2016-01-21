@@ -20,7 +20,7 @@ GameScene::GameScene(Player* player) : SuperScene() {
 
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 
-	grid = new Grid(this, origin, 13, 57, 44, 0, player);
+	grid = new Grid(this, origin, 40, 100, 62, 0, player);
 	addChild(grid);
 
 	resources = new Resources();
@@ -39,8 +39,8 @@ GameScene::~GameScene() {
 
 void GameScene::update(float deltaTime) {
 	//Let the hud follow the camera before the camera gets updated!
-	Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);
-	hud->position = Point2(cam_pos.x - SWIDTH / 2, cam_pos.y - SHEIGHT / 2);
+	Point cam_pos = Point(camera()->position.x, camera()->position.y);
+	hud->position = Point(cam_pos.x - SWIDTH / 2, cam_pos.y - SHEIGHT / 2);
 
 	SuperScene::update(deltaTime);
 	moveCamera(deltaTime);

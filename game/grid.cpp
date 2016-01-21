@@ -7,12 +7,13 @@
  *     - What you did
  */
 
-#include "grid.h"
 #include <iostream>
+#include <vector>
+
+#include "grid.h"
 #include "basicentity.h"
 #include "hexagon.h"
 #include "player.h"
-#include <vector>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, player);
 
 			//set frame
-			int f = rand() % 1;
+			int f = rand() % 3;
 			hexagon->frame(f);
 
 			//to the Entity vector<Sprite*> _spritebatch
@@ -83,15 +84,16 @@ void Grid::update(float deltaTime) {
 			lastHex->frame(player->getSelectedBuilding());
 		}
 
+		//Deselect building
 		if (parent->input()->getMouseDown(1) && loaded) {
-			lastHex->frame(3);
+			player->setSelectedBuilding(63);
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.
-		if (distance < lastHex->getMouseDistance()) {
+		if (distance < lastHex->getMouseDistance() && distance < 100) { //100 = radius
 			lastHovered = i;
 		}
-		else {
+		if (distance < 100) { //100 = radius
 			lastHex->color = GRAY;
 		}
 	}
