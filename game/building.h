@@ -16,7 +16,18 @@ class Building: public Entity {
 		virtual ~Building();
 		virtual void update(float deltaTime);
 
+		virtual int getWoodCost() { return woodCost; };
+		virtual int getFoodCost() { return foodCost; };
+		virtual int getGoldCost() { return goldCost; };
+		virtual int getStoneCost() { return stoneCost; };
+
 	private:
+		int frame;
+
+		int woodCost;
+		int foodCost;
+		int goldCost;
+		int stoneCost;
 
 };
 

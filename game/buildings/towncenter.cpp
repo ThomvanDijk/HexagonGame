@@ -5,14 +5,14 @@
 
 #include "towncenter.h"
 
-Towncenter::Towncenter() : Entity() {
+TownCenter::TownCenter() : Building() {
 	
 }
 
-Towncenter::~Towncenter() {
+TownCenter::~TownCenter() {
 	
 }
 
-void Towncenter::update(float deltaTime) {
+void TownCenter::update(float deltaTime) {
 	
 }

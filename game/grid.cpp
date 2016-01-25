@@ -47,7 +47,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 			hexagon = new Hexagon(parent, xCoord, yCoord, xPos, yPos, player);
 
 			//set frame
-			int f = rand() % 3;
+			int f = 62; //rand() % 3;
 			hexagon->frame(f);
 
 			//to the Entity vector<Sprite*> _spritebatch

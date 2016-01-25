@@ -19,6 +19,9 @@
 #include "hud.h"
 #include "grid.h"
 
+//buildings
+#include "buildings/towncenter.h"
+
 class GameScene: public SuperScene {
 	public:
 		GameScene(Player* player);
@@ -34,6 +37,10 @@ class GameScene: public SuperScene {
 		Grid* grid;
 		Hud* hud;
 		Timer timer;
+
+		//buildings
+		TownCenter* townCenter;
+
 };
 
 #endif /* GAMESCENE_H */ 

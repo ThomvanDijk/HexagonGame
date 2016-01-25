@@ -18,8 +18,10 @@ using namespace std;
 GameScene::GameScene(Player* player) : SuperScene() {
 	this->player = player;
 
-	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
+	//Add the buildings first
+	townCenter = new TownCenter();
 
+	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 	grid = new Grid(this, origin, 40, 100, 62, 0, player);
 	addChild(grid);
 

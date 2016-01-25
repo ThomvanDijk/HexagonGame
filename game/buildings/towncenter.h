@@ -6,14 +6,14 @@
 #ifndef TOWNCENTER_H
 #define TOWNCENTER_H
 
-#include <rt2d/entity.h>
+#include "../building.h"
 
 using namespace std;
 
-class Towncenter : public Entity {
+class TownCenter : public Building {
 	public:
-		Towncenter();
-		virtual ~Towncenter();
+		TownCenter();
+		virtual ~TownCenter();
 		virtual void update(float deltaTime);
 
 	private:
