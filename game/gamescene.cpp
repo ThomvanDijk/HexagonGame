@@ -20,9 +20,10 @@ GameScene::GameScene(Player* player) : SuperScene() {
 
 	//Add the buildings first
 	townCenter = new TownCenter();
+	buildingList.push_back(townCenter);
 
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
-	grid = new Grid(this, origin, 40, 100, 62, 0, player);
+	grid = new Grid(this, origin, 40, 100, 62, 0, player, buildingList);
 	addChild(grid);
 
 	hud = new Hud(this, player);

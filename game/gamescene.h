@@ -36,6 +36,8 @@ class GameScene: public SuperScene {
 		Hud* hud;
 		Timer timer;
 
+		vector<Building*> buildingList;
+
 		//buildings
 		TownCenter* townCenter;
 

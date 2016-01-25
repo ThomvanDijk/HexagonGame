@@ -17,7 +17,8 @@
 
 using namespace std;
 
-Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player) : Entity() {
+Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player, vector<Building*> buildingList) : Entity() {
+	this->buildingList = buildingList;
 	this->parent = parent;
 	this->origin = origin;
 	this->player = player;
@@ -84,7 +85,13 @@ void Grid::update(float deltaTime) {
 		
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedBuilding() != 63) {
-			lastHex->frame(player->getSelectedBuilding());
+			int selected = player->getSelectedBuilding();
+			lastHex->frame(selected);
+
+			player->wood - buildingList[selected]->getWoodCost();
+			player->food - buildingList[selected]->getFoodCost();
+			player->gold - buildingList[selected]->getGoldCost();
+			player->stone - buildingList[selected]->getStoneCost();
 		}
 
 		//Deselect building

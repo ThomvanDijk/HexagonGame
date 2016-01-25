@@ -16,19 +16,22 @@
 
 #include "basicentity.h"
 #include "hexagon.h"
+#include "building.h"
 #include "player.h"
 
 using namespace std;
 
 class Grid: public Entity {
 	public:
-		Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player);
+		Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player, vector<Building*> buildingList);
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
 		virtual void setLoaded(bool b) { loaded = b; }
 
 	private:
+		vector<Building*> buildingList;
+
 		Player* player;
 		Hexagon* hexagon;
 		Scene* parent;

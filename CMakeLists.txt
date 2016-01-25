@@ -203,6 +203,8 @@ add_executable(game
 	# Add buildings from sub folder
 	game/buildings/towncenter.cpp
 	game/buildings/towncenter.h
+	game/buildings/farm.cpp
+	game/buildings/farm.h
 	
 )
 target_link_libraries(game
