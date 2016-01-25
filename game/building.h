@@ -21,7 +21,8 @@ class Building: public Entity {
 		virtual int getGoldCost() { return goldCost; };
 		virtual int getStoneCost() { return stoneCost; };
 
-	private:
+	//The classes who extend building can use these variables because of protected.
+	protected:
 		int frame;
 
 		int woodCost;

@@ -57,7 +57,10 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 }
 
 Grid::~Grid() {
+	//int s = _spritebatch.size();
+	//for (int i = 0; i < s; i++) {
 
+	//}
 }
 
 void Grid::update(float deltaTime) {
@@ -80,12 +83,13 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 		
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && loaded) {
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedBuilding() != 63) {
 			lastHex->frame(player->getSelectedBuilding());
 		}
 
 		//Deselect building
 		if (parent->input()->getMouseDown(1) && loaded) {
+			//Select last frame (nothing).
 			player->setSelectedBuilding(63);
 		}
 

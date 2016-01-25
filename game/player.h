@@ -19,6 +19,11 @@ class Player: public Entity {
 		virtual void setSelectedBuilding(int s) { selectedBuilding = s; }
 		virtual int getSelectedBuilding() { return selectedBuilding; }
 
+		int wood;
+		int food;
+		int gold;
+		int stone;
+
 	private:
 		int selectedBuilding;
 

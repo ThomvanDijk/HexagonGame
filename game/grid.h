@@ -33,6 +33,7 @@ class Grid: public Entity {
 		Hexagon* hexagon;
 		Scene* parent;
 		Point2* origin;
+
 		Timer timer;
 		bool loaded;
 		int hexWidth;

@@ -6,7 +6,8 @@
 #include "towncenter.h"
 
 TownCenter::TownCenter() : Building() {
-	
+	frame = 0;
+	placed = false;
 }
 
 TownCenter::~TownCenter() {

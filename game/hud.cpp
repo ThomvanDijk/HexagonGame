@@ -3,16 +3,13 @@
  *     - Initial commit
  */
 
-#include "circlebutton.h"
 #include "hud.h"
 
 using namespace std;
 
-Hud::Hud(Scene* parent, Player* player, Resources* resources) : Entity() {
+Hud::Hud(Scene* parent, Player* player) : Entity() {
 	this->player = player;
 	this->parent = parent;
-	this->resources = resources;
-	numberOfBuildings = 14;
 	
 	//Add the top part.
 	topBanner = new BasicEntity();
@@ -52,11 +49,12 @@ Hud::Hud(Scene* parent, Player* player, Resources* resources) : Entity() {
 	foodText->position = Point(topBanner->position.x - topBanner->sprite()->size.x / 2 + 418, topBanner->position.y + 18);
 
 	//add building buttons
+	numberOfBuildings = 14;
 	for (int i = 0; i < numberOfBuildings; i++) {
 		Point size = Point(60, 60);
 		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
 
-		circleButton = new CircleButton(size, pos, parent, i, player);
+		circleButton = new CircleButton(size, pos, parent, i + 1, player);
 		addChild(circleButton);
 	}
 }
@@ -70,18 +68,18 @@ Hud::~Hud() {
 
 void Hud::update(float deltaTime) {
 	string wood = "Wood: ";
-	wood.append(std::to_string(resources->wood));
+	wood.append(std::to_string(player->wood));
 	woodText->message(wood);
 
-	string stone = "Stone: ";
-	stone.append(std::to_string(resources->stone));
-	stoneText->message(stone);
+	string food = "Food: ";
+	food.append(std::to_string(player->food));
+	foodText->message(food);
 
 	string gold = "Gold: ";
-	gold.append(std::to_string(resources->gold));
+	gold.append(std::to_string(player->gold));
 	goldText->message(gold);
 
-	string food = "Food: ";
-	food.append(std::to_string(resources->food));
-	foodText->message(food);
+	string stone = "Stone: ";
+	stone.append(std::to_string(player->stone));
+	stoneText->message(stone);
 }

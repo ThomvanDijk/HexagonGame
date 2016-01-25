@@ -7,6 +7,11 @@
 
 Player::Player() : Entity() {
 	selectedBuilding = 0;
+
+	wood = 0;
+	food = 0;
+	gold = 0;
+	stone = 0;
 }
 
 Player::~Player() {

@@ -25,10 +25,7 @@ GameScene::GameScene(Player* player) : SuperScene() {
 	grid = new Grid(this, origin, 40, 100, 62, 0, player);
 	addChild(grid);
 
-	resources = new Resources();
-	addChild(resources);
-
-	hud = new Hud(this, player, resources);
+	hud = new Hud(this, player);
 	addChild(hud);
 }
 

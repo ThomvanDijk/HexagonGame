@@ -17,7 +17,7 @@ class TownCenter : public Building {
 		virtual void update(float deltaTime);
 
 	private:
-		int selectedBuilding;
+		bool placed;
 
 };
 
