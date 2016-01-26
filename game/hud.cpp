@@ -10,7 +10,7 @@ using namespace std;
 Hud::Hud(Scene* parent, Player* player) : Entity() {
 	this->player = player;
 	this->parent = parent;
-	
+
 	//Add the top part.
 	topBanner = new BasicEntity();
 	topBanner->addSprite(AUTOGENWHITE, 0.5, 0);
@@ -68,18 +68,18 @@ Hud::~Hud() {
 
 void Hud::update(float deltaTime) {
 	string wood = "Wood: ";
-	wood.append(std::to_string(player->wood));
+	wood.append(rt2d::to_string<int>(player->wood));
 	woodText->message(wood);
 
 	string food = "Food: ";
-	food.append(std::to_string(player->food));
+	food.append(rt2d::to_string<int>(player->food));
 	foodText->message(food);
 
 	string gold = "Gold: ";
-	gold.append(std::to_string(player->gold));
+	gold.append(rt2d::to_string<int>(player->gold));
 	goldText->message(gold);
 
 	string stone = "Stone: ";
-	stone.append(std::to_string(player->stone));
+	stone.append(rt2d::to_string<int>(player->stone));
 	stoneText->message(stone);
 }

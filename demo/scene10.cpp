@@ -9,7 +9,7 @@
 
 #include "scene10.h"
 
-Scene10::Scene10() : GameScene()
+Scene10::Scene10() : SuperScene()
 {
 	text[0]->message("Scene10: Heightmap (256x256=65536 sprites)");
 	text[5]->message("<Arrow keys> move camera");
@@ -94,8 +94,8 @@ void Scene10::update(float deltaTime)
 	// - Escape key stops Scene
 	// - Move Camera
 	// ###############################################################
-	GameScene::update(deltaTime);
-	GameScene::moveCamera(deltaTime);
+	SuperScene::update(deltaTime);
+	SuperScene::moveCamera(deltaTime);
 
 	// ###############################################################
 	// - link mouse to camera
@@ -105,9 +105,15 @@ void Scene10::update(float deltaTime)
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH/2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT/2;
 	std::string cursortxt = "cursor (";
-	cursortxt.append(std::to_string(mousex));
+	std::stringstream temp_strx;
+	temp_strx<<(mousey);
+	std::string strx = temp_strx.str();
+	cursortxt.append(strx);
 	cursortxt.append(",");
-	cursortxt.append(std::to_string(mousey));
+	std::stringstream temp_stry;
+	temp_stry<<(mousey);
+	std::string stry = temp_stry.str();
+	cursortxt.append(stry);
 	cursortxt.append(")");
 	text[9]->message(cursortxt);
 
@@ -129,15 +135,15 @@ void Scene10::update(float deltaTime)
 				spritebatch[counter]->color.a = 192;
 
 				std::string postxt = "pos (";
-				postxt.append(std::to_string(x));
+				postxt.append(rt2d::to_string<float>(x));
 				postxt.append(",");
-				postxt.append(std::to_string(y));
+				postxt.append(rt2d::to_string<float>(y));
 				postxt.append(") RGB: (");
-				postxt.append(std::to_string(spritebatch[counter]->color.r));
+				postxt.append(rt2d::to_string<int>(spritebatch[counter]->color.r));
 				postxt.append(",");
-				postxt.append(std::to_string(spritebatch[counter]->color.g));
+				postxt.append(rt2d::to_string<int>(spritebatch[counter]->color.g));
 				postxt.append(",");
-				postxt.append(std::to_string(spritebatch[counter]->color.b));
+				postxt.append(rt2d::to_string<int>(spritebatch[counter]->color.b));
 				postxt.append(")");
 				text[8]->message(postxt);
 			} else {

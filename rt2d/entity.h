@@ -28,8 +28,6 @@
 #include <rt2d/timer.h>
 #include <rt2d/sprite.h>
 #include <rt2d/line.h>
-#include <rt2d/input.h>
-#include <rt2d/camera.h>
 #include <rt2d/vectorx.h>
 
 /// @brief The Entity class is the Base class for the elements in your Scene.
@@ -45,9 +43,9 @@ public:
 	virtual void update(float deltaTime) = 0;
 
 	// transform
-	Vector2 position; /**< @brief The position of the Entity */
+	Point2 position; /**< @brief The position of the Entity */
 	float rotation; /**< @brief The rotation of the Entity */
-	Vector2 scale; /**< @brief The scale of the Entity */
+	Point2 scale; /**< @brief The scale of the Entity */
 
 	// data structure
 	/// @brief add an Entity as a child of this Entity.

@@ -7,6 +7,7 @@
 #define HUD_H
 
 #include <rt2d/entity.h>
+#include <rt2d/stringutil.h>
 #include <rt2d/text.h>
 
 #include "basicentity.h"
@@ -20,7 +21,7 @@ class Hud: public Entity {
 		Hud(Scene* parent, Player* player);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
-	
+
 	private:
 		BasicEntity* topBanner;
 		BasicEntity* bottomBanner;
@@ -35,4 +36,4 @@ class Hud: public Entity {
 
 };
 
-#endif /* HUD_H */ 
+#endif /* HUD_H */

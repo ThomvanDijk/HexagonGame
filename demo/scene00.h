@@ -15,7 +15,7 @@
 #include "superscene.h"
 #include "basicentity.h"
 
-class Scene00: public GameScene
+class Scene00: public SuperScene
 {
 public:
 	Scene00();

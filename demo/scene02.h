@@ -16,7 +16,7 @@
 #include "basicentity.h"
 #include "boidentity.h"
 
-class Scene02: public GameScene
+class Scene02: public SuperScene
 {
 public:
 	Scene02();

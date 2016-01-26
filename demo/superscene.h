@@ -20,11 +20,11 @@ struct Player
 	int mouseclicks = 0;
 };
 
-class GameScene: public Scene
+class SuperScene: public Scene
 {
 public:
-	GameScene();
-	virtual ~GameScene();
+	SuperScene();
+	virtual ~SuperScene();
 
 	// must be explicitly called from subclass
 	virtual void update(float deltaTime);

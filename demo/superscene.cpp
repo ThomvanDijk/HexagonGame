@@ -9,9 +9,9 @@
 
 #include "superscene.h"
 
-int GameScene::activescene = 0;
+int SuperScene::activescene = 0;
 
-GameScene::GameScene() : Scene()
+SuperScene::SuperScene() : Scene()
 {
 	fpstimer.start();
 
@@ -44,7 +44,7 @@ GameScene::GameScene() : Scene()
 }
 
 
-GameScene::~GameScene()
+SuperScene::~SuperScene()
 {
 	layers[top_layer]->removeChild(logo);
 
@@ -68,7 +68,7 @@ GameScene::~GameScene()
 }
 
 // must be explicitly called from subclass
-void GameScene::update(float deltaTime)
+void SuperScene::update(float deltaTime)
 {
 	// ###############################################################
 	// Escape key stops the Scene
@@ -100,7 +100,7 @@ void GameScene::update(float deltaTime)
 		}
 	}
 	std::string clicktxt = "click ";
-	clicktxt.append(std::to_string(player->mouseclicks));
+	clicktxt.append(rt2d::to_string<int>(player->mouseclicks));
 	text[10]->message(clicktxt);
 
 	// ###############################################################
@@ -122,7 +122,7 @@ void GameScene::update(float deltaTime)
 	static int framecounter = 0;
 	if (fpstimer.seconds() > 1.0f) {
 		std::string fpstxt = "FPS: ";
-		fpstxt.append(std::to_string(framecounter));
+		fpstxt.append(rt2d::to_string<int>(framecounter));
 		text[1]->message(fpstxt);
 		framecounter = 0;
 		fpstimer.start();
@@ -130,7 +130,7 @@ void GameScene::update(float deltaTime)
 	framecounter++;
 }
 
-void GameScene::moveCamera(float deltaTime)
+void SuperScene::moveCamera(float deltaTime)
 {
 	// ###############################################################
 	// Move Camera (Arrow up, down, left, right)

@@ -11,7 +11,7 @@
 #include <sstream>
 #include "scene00.h"
 
-Scene00::Scene00() : GameScene()
+Scene00::Scene00() : SuperScene()
 {
 	// Start Timer t
 	t.start();
@@ -66,7 +66,7 @@ void Scene00::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// remove 'clicks' text
 	text[10]->message("");

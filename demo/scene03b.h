@@ -3,29 +3,29 @@
  *
  * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
  */
-#ifndef SCENE03A_H
-#define SCENE03A_H
+#ifndef SCENE03B_H
+#define SCENE03B_H
 
 #include <rt2d/stringutil.h>
 #include "superscene.h"
 #include "basicentity.h"
 
-class Scene03a: public SuperScene
+class Scene03b: public SuperScene
 {
 public:
-	Scene03a();
-	virtual ~Scene03a();
+	Scene03b();
+	virtual ~Scene03b();
 
 	virtual void update(float deltaTime);
 
 private:
-	BasicEntity* sine;
-	BasicEntity* flower;
-	BasicEntity* gridlines;
+	BasicEntity* container;
+	Timer t;
+	void makeLines();
 
-	float frequency;
-	float amplitude;
-	float radius;
+	int factor;
+	int radius;
+	float size;
 };
 
-#endif /* SCENE03A_H */
+#endif /* SCENE03B_H */

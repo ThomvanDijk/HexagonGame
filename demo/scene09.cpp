@@ -9,7 +9,7 @@
 
 #include "scene09.h"
 
-Scene09::Scene09() : GameScene()
+Scene09::Scene09() : SuperScene()
 {
 	t.start();
 
@@ -53,8 +53,8 @@ void Scene09::update(float deltaTime)
 	// - Escape key stops Scene
 	// - Move Camera
 	// ###############################################################
-	GameScene::update(deltaTime);
-	GameScene::moveCamera(deltaTime);
+	SuperScene::update(deltaTime);
+	SuperScene::moveCamera(deltaTime);
 
 	// ###############################################################
 	// - link mouse to camera
@@ -64,9 +64,9 @@ void Scene09::update(float deltaTime)
 	int mousex = input()->getMouseX() + camera()->position.x - SWIDTH/2;
 	int mousey = input()->getMouseY() + camera()->position.y - SHEIGHT/2;
 	std::string cursortxt = "cursor (";
-	cursortxt.append(std::to_string(mousex));
+	cursortxt.append(rt2d::to_string<int>(mousex));
 	cursortxt.append(",");
-	cursortxt.append(std::to_string(mousey));
+	cursortxt.append(rt2d::to_string<int>(mousey));
 	cursortxt.append(")");
 	text[9]->message(cursortxt);
 

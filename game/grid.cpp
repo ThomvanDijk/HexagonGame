@@ -1,6 +1,6 @@
 /**
  * This file is part of a demo that shows how to use RT2D, a 2D OpenGL framework.
- * 
+ *
  * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
  *     - Initial commit
  * - Copyright 2015 Your Name <you@yourhost.com>
@@ -23,7 +23,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 	this->origin = origin;
 	this->player = player;
 	this->hexWidth = hexWidth;
-	
+
 	lastHovered = 0;
 	loaded = false;
 
@@ -52,7 +52,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 			hexagon->frame(f);
 
 			//to the Entity vector<Sprite*> _spritebatch
-			_spritebatch.push_back(hexagon); 
+			_spritebatch.push_back(hexagon);
 		}
 	}
 }
@@ -70,7 +70,7 @@ void Grid::update(float deltaTime) {
 	for (int i = 0; i < batchSize; i++) {
 		Hexagon* thisHex = (Hexagon*)_spritebatch[i];
 		Hexagon* lastHex = (Hexagon*)_spritebatch[lastHovered];
-		
+
 		thisHex->color = WHITE;
 		thisHex->update(deltaTime);
 
@@ -82,16 +82,18 @@ void Grid::update(float deltaTime) {
 
 		float distance = sqrt((subX * subX) + (subY * subY));
 		thisHex->setMouseDistance(distance);
-		
+
 		//detect mouse klick
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedBuilding() != 63) {
 			int selected = player->getSelectedBuilding();
 			lastHex->frame(selected);
 
-			player->wood - buildingList[selected]->getWoodCost();
-			player->food - buildingList[selected]->getFoodCost();
-			player->gold - buildingList[selected]->getGoldCost();
-			player->stone - buildingList[selected]->getStoneCost();
+			//cout << buildingList[selected]->getWoodCost() << endl;
+
+			//player->wood - buildingList[selected]->getWoodCost();
+			//player->food - buildingList[selected]->getFoodCost();
+			//player->gold - buildingList[selected]->getGoldCost();
+			//player->stone - buildingList[selected]->getStoneCost();
 		}
 
 		//Deselect building
@@ -109,7 +111,7 @@ void Grid::update(float deltaTime) {
 		}
 	}
 
-	//Apperently if you have a bool to prevent a klick before the scene is loaded, you have 
+	//Apperently if you have a bool to prevent a klick before the scene is loaded, you have
 	//to set it true at the end of the update function. Now the klick is reset...
 	loaded = true;
 	gridRules(deltaTime);

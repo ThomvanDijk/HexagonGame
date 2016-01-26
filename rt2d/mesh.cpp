@@ -111,8 +111,8 @@ void Mesh::generateCircleMesh(int radius, int segments, float uvwidth, float uvh
 
 		// #############################
 		// create second vertex
-		x = cos((deg + 30)*DEG_TO_RAD)*radius;
-		y = sin((deg + 30)*DEG_TO_RAD)*radius;
+		x = cos(deg*DEG_TO_RAD)*radius;
+		y = sin(deg*DEG_TO_RAD)*radius;
 		u = (x/radius) * uvwidth;
 		v = (-y/radius) * uvheight;
 		vertices.push_back(glm::vec3(x, y, 0.0f));
@@ -122,8 +122,8 @@ void Mesh::generateCircleMesh(int radius, int segments, float uvwidth, float uvh
 		// rotate n degrees for the final vertex
 		deg -= 360/step;
 		// create third vertex
-		x = cos((deg + 30)*DEG_TO_RAD)*radius;
-		y = sin((deg + 30)*DEG_TO_RAD)*radius;
+		x = cos(deg*DEG_TO_RAD)*radius;
+		y = sin(deg*DEG_TO_RAD)*radius;
 		u = (x/radius) * uvwidth;
 		v = (-y/radius) * uvheight;
 		vertices.push_back(glm::vec3(x, y, 0.0f));

@@ -1,6 +1,6 @@
 # CMake entry point
 cmake_minimum_required (VERSION 2.6)
-project (hexes_and_colors)
+project (rt2d)
 
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -20,7 +20,7 @@ if(UNIX)
 
 	set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
 
-	# valgrind --leak-check=yes ./demo
+	# valgrind --leak-check=full ./demo
 	# ./demo # creates cmon.out
 	# gprof demo gmon.out > analysis.txt
 	#set(CMAKE_CXX_FLAGS "-Wall -pg -std=c++11")
@@ -33,7 +33,11 @@ if(WIN32)
 	include(CreateLaunchers)
 	include(MSVCMultipleProcessCompile) # /MP
 
-	add_definitions( "/W3 /D_CRT_SECURE_NO_WARNINGS /wd4514 /nologo" ) # suppress pedantic warnings
+	if(MINGW)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	ELSE(MINGW)
+		add_definitions( "/W3 /D_CRT_SECURE_NO_WARNINGS /wd4514 /nologo" ) # suppress pedantic warnings
+	endif(MINGW)
 endif(WIN32)
 
 
@@ -106,6 +110,7 @@ add_library(rt2d
 	rt2d/shader.h
 	rt2d/sprite.cpp
 	rt2d/sprite.h
+	rt2d/stringutil.h
 	rt2d/text.cpp
 	rt2d/text.h
 	rt2d/texture.cpp
@@ -146,6 +151,8 @@ add_executable(demo
 	demo/scene03.h
 	demo/scene03a.cpp
 	demo/scene03a.h
+	demo/scene03b.cpp
+	demo/scene03b.h
 	demo/scene04.cpp
 	demo/scene04.h
 	demo/scene05.cpp
@@ -220,11 +227,18 @@ file(
 
 if(WIN32)
 	# Xcode and Visual working directories for demo
-	set_target_properties(demo PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
-	create_target_launcher(demo WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
-	# Xcode and Visual working directories for game
-	set_target_properties(game PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/game/")
-	create_target_launcher(game WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/game/")
+	#set_target_properties(demo PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
+	#create_target_launcher(demo WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/demo/")
+
+	# Xcode and Visual working directories for start
+	#set_target_properties(start PROPERTIES XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "${CMAKE_CURRENT_SOURCE_DIR}/start/")
+	#create_target_launcher(start WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/start/")
+
+	# create file tabs in visual studio
+	#SOURCE_GROUP(rt2d REGULAR_EXPRESSION ".*/rt2d/.*" )
+	#SOURCE_GROUP(demo REGULAR_EXPRESSION ".*/demo/.*" )
+	#SOURCE_GROUP(start REGULAR_EXPRESSION ".*/start/.*" )
+	#SOURCE_GROUP(shaders REGULAR_EXPRESSION ".*/.*shaders$" )
 endif(WIN32)
 
 

@@ -9,7 +9,7 @@
 
 #include "scene06.h"
 
-Scene06::Scene06() : GameScene()
+Scene06::Scene06() : SuperScene()
 {
 	t.start();
 	ct.start();
@@ -110,7 +110,7 @@ void Scene06::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// texture swapping

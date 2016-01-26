@@ -10,7 +10,7 @@
 #include <time.h>
 #include "scene07.h"
 
-Scene07::Scene07() : GameScene()
+Scene07::Scene07() : SuperScene()
 {
 	srand((unsigned)time(NULL));
 
@@ -68,7 +68,7 @@ void Scene07::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// Draw particles
@@ -102,12 +102,12 @@ void Scene07::update(float deltaTime)
 
 		// update message
 		std::string msg = "Particles: ";
-		msg.append(std::to_string(s));
+		msg.append(rt2d::to_string<unsigned int>(s));
 		text[6]->message(msg);
 
 		if (fpstimer.seconds() > 1.0f - deltaTime) {
 			std::string fpstxt = "FPS: ";
-			fpstxt.append(std::to_string(framecounter));
+			fpstxt.append(rt2d::to_string<int>(framecounter));
 			fpstxt.append(" (capped)");
 			framecounter = 0;
 			text[7]->message(fpstxt);

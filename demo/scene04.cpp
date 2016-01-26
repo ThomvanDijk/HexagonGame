@@ -11,7 +11,7 @@
 #include <rt2d/noise.h>
 #include "scene04.h"
 
-Scene04::Scene04() : GameScene()
+Scene04::Scene04() : SuperScene()
 {
 	t.start();
 	rt.start();
@@ -46,7 +46,7 @@ void Scene04::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// pixel_container

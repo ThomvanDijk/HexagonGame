@@ -15,6 +15,7 @@
 #include "scene02a.h"
 #include "scene03.h"
 #include "scene03a.h"
+#include "scene03b.h"
 #include "scene04.h"
 #include "scene05.h"
 #include "scene06.h"
@@ -29,13 +30,14 @@ int main( void )
 	Core core;
 
 	// Create all scenes on the heap and keep a list
-	std::vector<GameScene*> scenes;
+	std::vector<SuperScene*> scenes;
 	scenes.push_back(new Scene00());
 	scenes.push_back(new Scene01());
 	//scenes.push_back(new Scene02());
 	scenes.push_back(new Scene02a());
 	scenes.push_back(new Scene03());
 	scenes.push_back(new Scene03a());
+	//scenes.push_back(new Scene03b());
 	scenes.push_back(new Scene04());
 	scenes.push_back(new Scene05());
 	scenes.push_back(new Scene06());
@@ -54,7 +56,7 @@ int main( void )
 	}
 
 	// start running with the first Scene
-	GameScene* scene = scenes[0];
+	SuperScene* scene = scenes[0];
 	int scenecounter = 0;
 	int running = 1;
 	while (running) {
@@ -63,7 +65,7 @@ int main( void )
 		if (scenecounter < 0) { scenecounter = s-1; scene->activescene = s-1; }
 		scene = scenes[scenecounter];
 		core.run(scene); // update and render the current scene
-		core.showFrameRate(2); // show framerate in output every n seconds
+		core.showFrameRate(5); // show framerate in output every n seconds
 		if (!scene->isRunning()) { running = 0; } // check status of Scene every frame
 	}
 

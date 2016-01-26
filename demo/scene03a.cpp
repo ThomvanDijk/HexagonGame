@@ -5,7 +5,7 @@
  */
 #include "scene03a.h"
 
-Scene03a::Scene03a() : GameScene()
+Scene03a::Scene03a() : SuperScene()
 {
 	text[0]->message("Scene03a: Math");
 
@@ -87,7 +87,7 @@ void Scene03a::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// sine and flower
@@ -115,15 +115,15 @@ void Scene03a::update(float deltaTime)
 	// text
 	// ###############################################################
 	std::string radiustxt = "<Q/E> radius: ";
-	radiustxt.append(std::to_string((int)radius));
+	radiustxt.append(rt2d::to_string<int>((int)radius));
 	text[5]->message(radiustxt);
 
 	std::string amplitudetxt = "<W/S> amplitude: ";
-	amplitudetxt.append(std::to_string((int)amplitude));
+	amplitudetxt.append(rt2d::to_string<int>((int)amplitude));
 	text[6]->message(amplitudetxt);
 
 	std::string frequencytxt = "<A/D> frequency: ";
-	frequencytxt.append(std::to_string((int)frequency));
+	frequencytxt.append(rt2d::to_string<int>((int)frequency));
 	text[7]->message(frequencytxt);
 
 	// ###############################################################

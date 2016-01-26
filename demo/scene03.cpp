@@ -12,7 +12,7 @@
 
 RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
 
-Scene03::Scene03() : GameScene()
+Scene03::Scene03() : SuperScene()
 {
 	t.start();
 
@@ -123,7 +123,7 @@ void Scene03::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// dynamic_line

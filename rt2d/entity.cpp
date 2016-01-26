@@ -22,11 +22,11 @@ Entity::Entity()
 
 	_parent = NULL;
 
-	position = Vector2(0.0f, 0.0f);
+	position = Point2(0.0f, 0.0f);
 	rotation = 0.0f;
-	scale = Vector2(1.0f, 1.0f);
+	scale = Point2(1.0f, 1.0f);
 
-	_worldpos = Vector2(0.0f, 0.0f);
+	_worldpos = Point2(0.0f, 0.0f);
 
 	_sprite = NULL;
 	_line = NULL;
@@ -141,8 +141,8 @@ void Entity::addSpriteSheet(const std::string& filename, int u, int v)
 void Entity::addGrid(const std::string& filename, int u, int v, int cols, int rows, int sizex, int sizey)
 {
 	deleteSpritebatch();
-	for (int x = 0; x < cols; x++) {
-		for (int y = 0; y < rows; y++) {
+	for (int y = 0; y < rows; y++) {
+		for (int x = 0; x < cols; x++) {
 			Sprite* s = new Sprite();
 			s->useCulling(1);
 			s->spriteposition.x = x * sizex;

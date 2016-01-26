@@ -10,7 +10,7 @@
 #include <time.h>
 #include "scene02.h"
 
-Scene02::Scene02() : GameScene()
+Scene02::Scene02() : SuperScene()
 {
 	srand((unsigned)time(NULL));
 
@@ -55,5 +55,5 @@ void Scene02::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 }

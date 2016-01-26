@@ -61,7 +61,7 @@ public:
 	Timer t;
 };
 
-class Scene02a : public GameScene
+class Scene02a : public SuperScene
 {
 public:
 	Scene02a();

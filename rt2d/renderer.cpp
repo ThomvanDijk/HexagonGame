@@ -49,6 +49,7 @@ int Renderer::init()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // MacOS X
 
 	GLFWmonitor* primary = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(primary);
@@ -244,7 +245,11 @@ void Renderer::_renderSpriteBatch(glm::mat4& modelMatrix, std::vector<Sprite*>& 
 			}
 			// this Sprite isn't culled and needs to be drawn
 			if (!culled) {
-				RGBAColor blendcolor = sprite->color;
+				RGBAColor blendcolor = MAGENTA;
+				if (texture->warranty()) {
+					blendcolor = sprite->color;
+				}
+
 				// _uvOffsetID
 				glUniform2f(shader->uvOffsetID(), sprite->uvoffset.x, sprite->uvoffset.y);
 
@@ -288,7 +293,10 @@ void Renderer::_renderSprite(const glm::mat4& modelMatrix, Sprite* sprite, bool 
 
 	Mesh* mesh = _resman.getSpriteMesh(sprite->size.x, sprite->size.y, sprite->pivot.x, sprite->pivot.y, sprite->uvdim.x, sprite->uvdim.y, sprite->circlemesh(), sprite->which());
 
-	RGBAColor blendcolor = sprite->color;
+	RGBAColor blendcolor = MAGENTA;
+	if (texture->warranty()) {
+		blendcolor = sprite->color;
+	}
 
 	// _uvOffsetID
 	glUniform2f(shader->uvOffsetID(), sprite->uvoffset.x, sprite->uvoffset.y);

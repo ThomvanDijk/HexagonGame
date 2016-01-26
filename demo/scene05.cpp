@@ -9,7 +9,7 @@
 
 #include "scene05.h"
 
-Scene05::Scene05() : GameScene()
+Scene05::Scene05() : SuperScene()
 {
 	t.start();
 
@@ -47,7 +47,7 @@ void Scene05::update(float deltaTime)
 	// ###############################################################
 	// Make SuperScene do what it needs to do (Escape key stops Scene)
 	// ###############################################################
-	GameScene::update(deltaTime);
+	SuperScene::update(deltaTime);
 
 	// ###############################################################
 	// wrap and filter

@@ -11,11 +11,12 @@
 #define SCENE09_H
 
 #include <vector>
+#include <rt2d/stringutil.h>
 #include <rt2d/timer.h>
 #include "superscene.h"
 #include "basicentity.h"
 
-class Scene09: public GameScene
+class Scene09: public SuperScene
 {
 public:
 	Scene09();

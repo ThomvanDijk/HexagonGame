@@ -10,11 +10,12 @@
 #ifndef SCENE01_H
 #define SCENE01_H
 
+#include <rt2d/stringutil.h>
 #include <rt2d/timer.h>
 #include "superscene.h"
 #include "basicentity.h"
 
-class Scene01: public GameScene
+class Scene01: public SuperScene
 {
 public:
 	Scene01();
