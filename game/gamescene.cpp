@@ -1,6 +1,6 @@
 /**
  * This file is part of a demo that shows how to use RT2D, a 2D OpenGL framework.
- * 
+ *
  * - Copyright 2015 Rik Teerling <rik@onandoffables.com>
  *     - Initial commit
  * - Copyright 2015 Your Name <you@yourhost.com>
@@ -18,9 +18,11 @@ using namespace std;
 GameScene::GameScene(Player* player) : SuperScene() {
 	this->player = player;
 
-	//Add the buildings first
+	//Add the buildings first, in order of the spritesheet.
 	townCenter = new TownCenter();
 	buildingList.push_back(townCenter);
+	farm = new Farm();
+	buildingList.push_back(farm);
 
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 	grid = new Grid(this, origin, 40, 100, 62, 0, player, buildingList);
@@ -44,6 +46,8 @@ void GameScene::update(float deltaTime) {
 
 	SuperScene::update(deltaTime);
 	moveCamera(deltaTime);
+
+	player->update(deltaTime);
 
 	//text follows camera
 	/*Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);

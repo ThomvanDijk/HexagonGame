@@ -6,7 +6,7 @@
 #include "player.h"
 
 Player::Player() : Entity() {
-	selectedBuilding = 0;
+	selectedFrame = 0;
 
 	wood = 0;
 	food = 0;
@@ -15,7 +15,7 @@ Player::Player() : Entity() {
 }
 
 Player::~Player() {
-	
+
 }
 
 void Player::update(float deltaTime) {

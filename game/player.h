@@ -16,8 +16,8 @@ class Player: public Entity {
 		Player();
 		virtual ~Player();
 		virtual void update(float deltaTime);
-		virtual void setSelectedBuilding(int s) { selectedBuilding = s; }
-		virtual int getSelectedBuilding() { return selectedBuilding; }
+		virtual void setSelectedFrame(int s) { selectedFrame = s; }
+		virtual int getSelectedFrame() { return selectedFrame; }
 
 		int wood;
 		int food;
@@ -25,8 +25,8 @@ class Player: public Entity {
 		int stone;
 
 	private:
-		int selectedBuilding;
+		int selectedFrame;
 
 };
 
-#endif /* PLAYER_H */ 
+#endif /* PLAYER_H */

@@ -1,6 +1,6 @@
 # CMake entry point
 cmake_minimum_required (VERSION 2.6)
-project (rt2d)
+project (Medieval_City)
 
 
 if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
@@ -206,12 +206,18 @@ add_executable(game
 	game/player.h
 	game/building.cpp
 	game/building.h
+	game/terrain.cpp
+	game/terrain.h
 	
 	# Add buildings from sub folder
 	game/buildings/towncenter.cpp
 	game/buildings/towncenter.h
 	game/buildings/farm.cpp
 	game/buildings/farm.h
+	
+	# Add terrains from sub folder
+	game/terrains/wheatfield.cpp
+	game/terrains/wheatfield.h
 	
 )
 target_link_libraries(game

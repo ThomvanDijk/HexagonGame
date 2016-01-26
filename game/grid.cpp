@@ -84,22 +84,20 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedBuilding() != 63) {
-			int selected = player->getSelectedBuilding();
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63) {
+			int selected = player->getSelectedFrame();
 			lastHex->frame(selected);
 
-			//cout << buildingList[selected]->getWoodCost() << endl;
-
-			//player->wood - buildingList[selected]->getWoodCost();
-			//player->food - buildingList[selected]->getFoodCost();
-			//player->gold - buildingList[selected]->getGoldCost();
-			//player->stone - buildingList[selected]->getStoneCost();
+			player->wood -= buildingList[selected]->getWoodCost();
+			player->food -= buildingList[selected]->getFoodCost();
+			player->gold -= buildingList[selected]->getGoldCost();
+			player->stone -= buildingList[selected]->getStoneCost();
 		}
 
 		//Deselect building
 		if (parent->input()->getMouseDown(1) && loaded) {
 			//Select last frame (nothing).
-			player->setSelectedBuilding(63);
+			player->setSelectedFrame(63);
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.

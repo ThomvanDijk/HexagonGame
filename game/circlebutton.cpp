@@ -41,7 +41,7 @@ void CircleButton::update(float deltaTime) {
 	if (distance < circleButton->sprite()->size.x / 2) {
 		circleButton->sprite()->color = GRAY;
 		if (parent->input()->getMouseDown(0)) {
-			player->setSelectedBuilding(frame);
+			player->setSelectedFrame(frame);
 		}
 	}
 }
