@@ -23,8 +23,6 @@ class Building: public Entity {
 
 	//The classes who extend building can use these variables because of protected.
 	protected:
-		int frame;
-
 		int woodCost;
 		int foodCost;
 		int goldCost;

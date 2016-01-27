@@ -19,16 +19,16 @@ GameScene::GameScene(Player* player) : SuperScene() {
 	this->player = player;
 
 	//Add the buildings first, in order of the spritesheet.
-	townCenter = new TownCenter();
-	buildingList.push_back(townCenter);
 	farm = new Farm();
 	buildingList.push_back(farm);
+	townCenter = new TownCenter();
+	buildingList.push_back(townCenter);
 
 	origin = new Point2(SWIDTH / 2, SHEIGHT / 2);
 	grid = new Grid(this, origin, 40, 100, 62, 0, player, buildingList);
 	addChild(grid);
 
-	hud = new Hud(this, player);
+	hud = new Hud(this, player, buildingList);
 	addChild(hud);
 }
 

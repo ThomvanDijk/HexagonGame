@@ -12,17 +12,19 @@
 
 #include "basicentity.h"
 #include "circlebutton.h"
+#include "building.h"
 #include "player.h"
 
 using namespace std;
 
 class Hud: public Entity {
 	public:
-		Hud(Scene* parent, Player* player);
+		Hud(Scene* parent, Player* player, vector<Building*> buildingList);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 
 	private:
+		vector<Building*> buildingList;
 		BasicEntity* topBanner;
 		BasicEntity* bottomBanner;
 		int numberOfBuildings;

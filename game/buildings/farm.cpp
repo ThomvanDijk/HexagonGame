@@ -6,8 +6,6 @@
 #include "farm.h"
 
 Farm::Farm() : Building() {
-	frame = 2;
-
 	woodCost = 100;
 	foodCost = 0;
 	goldCost = 20;

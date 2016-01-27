@@ -7,9 +7,10 @@
 
 using namespace std;
 
-Hud::Hud(Scene* parent, Player* player) : Entity() {
+Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity() {
 	this->player = player;
 	this->parent = parent;
+	this->buildingList = buildingList;
 
 	//Add the top part.
 	topBanner = new BasicEntity();
@@ -49,12 +50,12 @@ Hud::Hud(Scene* parent, Player* player) : Entity() {
 	foodText->position = Point(topBanner->position.x - topBanner->sprite()->size.x / 2 + 418, topBanner->position.y + 18);
 
 	//add building buttons
-	numberOfBuildings = 14;
+	numberOfBuildings = buildingList.size() - 1;
 	for (int i = 0; i < numberOfBuildings; i++) {
 		Point size = Point(60, 60);
 		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
 
-		circleButton = new CircleButton(size, pos, parent, i + 1, player);
+		circleButton = new CircleButton(size, pos, parent, i, player);
 		addChild(circleButton);
 	}
 }

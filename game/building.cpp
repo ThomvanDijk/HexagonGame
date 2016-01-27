@@ -6,8 +6,6 @@
 #include "building.h"
 
 Building::Building() : Entity() {
-	frame = 0;
-
 	woodCost = 0;
 	foodCost = 0;
 	goldCost = 0;
