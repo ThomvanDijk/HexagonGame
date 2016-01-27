@@ -25,6 +25,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 	this->hexWidth = hexWidth;
 
 	lastHovered = 0;
+	hoverHud = false;
 	loaded = false;
 
 	double xOff = cos(30 * DEG_TO_RAD) * (hexWidth + padding);
@@ -84,7 +85,7 @@ void Grid::update(float deltaTime) {
 		thisHex->setMouseDistance(distance);
 
 		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63) {
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud) {
 			int selected = player->getSelectedFrame();
 			lastHex->frame(selected);
 
@@ -101,10 +102,10 @@ void Grid::update(float deltaTime) {
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.
-		if (distance < lastHex->getMouseDistance() && distance < 100) { //100 = radius
+		if (distance < lastHex->getMouseDistance() && distance < 100 && !hoverHud) { //100 = radius
 			lastHovered = i;
 		}
-		if (distance < 100) { //100 = radius
+		if (distance < 100 && !hoverHud) { //100 = radius
 			lastHex->color = GRAY;
 		}
 	}

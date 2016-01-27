@@ -15,6 +15,8 @@
 #include "building.h"
 #include "player.h"
 
+class GameScene;
+
 using namespace std;
 
 class Hud: public Entity {
@@ -22,6 +24,7 @@ class Hud: public Entity {
 		Hud(Scene* parent, Player* player, vector<Building*> buildingList);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
+		virtual bool getHoverHud() { return hoverHud; }
 
 	private:
 		vector<Building*> buildingList;
@@ -31,6 +34,8 @@ class Hud: public Entity {
 		CircleButton* circleButton;
 		Scene* parent;
 		Player* player;
+		bool hoverHud;
+
 		Text* woodText;
 		Text* stoneText;
 		Text* goldText;

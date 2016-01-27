@@ -27,6 +27,7 @@ class Grid: public Entity {
 		virtual ~Grid();
 		virtual void update(float deltaTime);
 		virtual void gridRules(float deltaTime);
+		virtual void setHoverHud(bool h) { hoverHud = h; }
 		virtual void setLoaded(bool b) { loaded = b; }
 
 	private:
@@ -39,6 +40,7 @@ class Grid: public Entity {
 
 		Timer timer;
 		bool loaded;
+		bool hoverHud;
 		int hexWidth;
 		int hexHeight;
 		int lastHovered;

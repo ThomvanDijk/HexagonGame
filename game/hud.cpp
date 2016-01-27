@@ -11,6 +11,7 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	this->player = player;
 	this->parent = parent;
 	this->buildingList = buildingList;
+	hoverHud = false;
 
 	//Add the top part.
 	topBanner = new BasicEntity();
@@ -68,6 +69,20 @@ Hud::~Hud() {
 }
 
 void Hud::update(float deltaTime) {
+	double mouseX = parent->input()->getMouseX();
+	double mouseY = parent->input()->getMouseY();
+
+	double bottomBannerRight = bottomBanner->position.x + bottomBanner->sprite()->size.x / 2;
+	double bottomBannerLeft = bottomBanner->position.x - bottomBanner->sprite()->size.x / 2;
+	double bottomBannerTop = bottomBanner->position.y - bottomBanner->sprite()->size.y;
+
+	if (mouseX < bottomBannerRight && mouseX > bottomBannerLeft && mouseY > bottomBannerTop) {
+		hoverHud = true;
+	}
+	else {
+		hoverHud = false;
+	}
+
 	string wood = "Wood: ";
 	wood.append(rt2d::to_string<int>(player->wood));
 	woodText->message(wood);
