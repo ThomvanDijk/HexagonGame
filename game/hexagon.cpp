@@ -7,13 +7,14 @@
  *     - What you did
  */
 
+#include <rt2d/config.h>
+#include <vector>
+#include <iostream>
+
 #include "hexagon.h"
 #include "sprite.h"
-#include <rt2d/config.h>
 #include "superscene.h"
-#include <iostream>
 #include "player.h"
-#include <vector>
 
 RGBAColor colors[10] = { WHITE, GRAY, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PINK, MAGENTA };
 

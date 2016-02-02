@@ -67,6 +67,8 @@ Grid::~Grid() {
 
 void Grid::update(float deltaTime) {
 	int batchSize = _spritebatch.size();
+	//Due to a bug in rt2d I need to have a variable loaded.
+	if (loaded) { loaded = true; }
 
 	for (int i = 0; i < batchSize; i++) {
 		Hexagon* thisHex = (Hexagon*)_spritebatch[i];
@@ -84,21 +86,33 @@ void Grid::update(float deltaTime) {
 		float distance = sqrt((subX * subX) + (subY * subY));
 		thisHex->setMouseDistance(distance);
 
-		//detect mouse klick
-		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud) {
-			int selected = player->getSelectedFrame();
-			lastHex->frame(selected);
+		int selected = player->getSelectedFrame();
 
-			player->wood -= buildingList[selected]->getWoodCost();
-			player->food -= buildingList[selected]->getFoodCost();
-			player->gold -= buildingList[selected]->getGoldCost();
-			player->stone -= buildingList[selected]->getStoneCost();
+		//Detect mouse klick, frame 63 is nothing.
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selected) {
+			int woodCost = buildingList[selected]->getWoodCost();
+			int foodCost = buildingList[selected]->getFoodCost();
+			int goldCost = buildingList[selected]->getGoldCost();
+			int stoneCost = buildingList[selected]->getStoneCost();
+
+			if (player->wood >= woodCost && player->food >= foodCost && player->gold >= goldCost && player->stone >= stoneCost) {
+				player->wood -= woodCost;
+				player->food -= foodCost;
+				player->gold -= goldCost;
+				player->stone -= stoneCost;
+
+				cout << lastHex->frame() << endl;
+
+				lastHex->frame(selected);
+			}
+			loaded = false;
 		}
 
 		//Deselect building
 		if (parent->input()->getMouseDown(1) && loaded) {
 			//Select last frame (nothing).
 			player->setSelectedFrame(63);
+			loaded = false;
 		}
 
 		//If the distance is lower than the last distance then swich to last hovered hex.
@@ -111,11 +125,5 @@ void Grid::update(float deltaTime) {
 	}
 
 	//Apperently if you have a bool to prevent a klick before the scene is loaded, you have
-	//to set it true at the end of the update function. Now the klick is reset...
 	loaded = true;
-	gridRules(deltaTime);
-}
-
-void Grid::gridRules(float deltaTime) {
-
 }

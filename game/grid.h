@@ -26,7 +26,6 @@ class Grid: public Entity {
 		Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player, vector<Building*> buildingList);
 		virtual ~Grid();
 		virtual void update(float deltaTime);
-		virtual void gridRules(float deltaTime);
 		virtual void setHoverHud(bool h) { hoverHud = h; }
 		virtual void setLoaded(bool b) { loaded = b; }
 

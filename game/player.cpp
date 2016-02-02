@@ -8,10 +8,10 @@
 Player::Player() : Entity() {
 	selectedFrame = 0;
 
-	wood = 0;
-	food = 0;
-	gold = 0;
-	stone = 0;
+	wood = 1000;
+	food = 1000;
+	gold = 1000;
+	stone = 1000;
 }
 
 Player::~Player() {

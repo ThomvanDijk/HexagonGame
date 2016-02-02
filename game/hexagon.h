@@ -14,6 +14,7 @@
 #include <rt2d/scene.h>
 #include <rt2d/timer.h>
 #include <rt2d/text.h>
+
 #include "sprite.h"
 #include "player.h"
 
