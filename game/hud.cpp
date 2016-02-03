@@ -12,6 +12,7 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	this->parent = parent;
 	this->buildingList = buildingList;
 	hoverHud = false;
+	selected = 0;
 
 	//Add the top part.
 	topBanner = new BasicEntity();
@@ -50,15 +51,26 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	foodText->scale = Point(0.4f, 0.4f);
 	foodText->position = Point(topBanner->position.x - topBanner->sprite()->size.x / 2 + 418, topBanner->position.y + 18);
 
-	//add building buttons
+	//add mainBuilding buttons
 	numberOfBuildings = buildingList.size() - 1;
 	for (int i = 0; i < numberOfBuildings; i++) {
-		Point size = Point(60, 60);
+		Point size = Point(100, 100);
 		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
 
-		circleButton = new CircleButton(size, pos, parent, i, player);
-		addChild(circleButton);
+		mainButton = new CircleButton(size, pos, parent, i, player);
+		mainButton->setColor(RGBAColor(0, 0, 0, 0));
+		addChild(mainButton);
+		mainButtonList.push_back(mainButton);
 	}
+
+	//add farm buttons
+	Point buttonSize = Point(100, 100);
+	Point buttonPos = Point(0, -100);
+	//61 is the place of wheatfield in spritesheet
+	wheatFieldButton = new CircleButton(buttonSize, buttonPos, parent, 61, player);
+	//set the default color transparent
+	wheatFieldButton->setColor(RGBAColor(0, 0, 0, 0));
+	addChild(wheatFieldButton);
 }
 
 Hud::~Hud() {
@@ -81,6 +93,19 @@ void Hud::update(float deltaTime) {
 	}
 	else {
 		hoverHud = false;
+	}
+
+	//if no building is selected
+	if (selected == 0) {
+		int s = mainButtonList.size();
+		for (int i = 0; i < s; i++) {
+			mainButtonList[i]->setColor(WHITE);
+		}
+	}
+
+	if (selected == 1) {
+		wheatFieldButton->setColor(WHITE);
+		wheatFieldButton->position = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2), SHEIGHT - SHEIGHT / 6 - 10);
 	}
 
 	string wood = "Wood: ";

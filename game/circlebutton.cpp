@@ -8,15 +8,16 @@
 
 using namespace std;
 
-CircleButton::CircleButton(Point2 size, Point2 pos, Scene* parent, int frame, Player* player) : Entity() {
+CircleButton::CircleButton(Point size, Point pos, Scene* parent, int frame, Player* player) : Entity() {
 	this->player = player;
 	this->parent = parent;
 	this->frame = frame;
 	this->pos = pos;
 	this->size = size;
 
+	color = WHITE;
+
 	circleButton = new BasicEntity();
-	//circleButton->addSprite("assets/sprite_sheet.tga", 0.5, 0.5, 0.125, 0.125, 0, 0);
 	circleButton->addSprite("assets/sprite_sheet.tga", 0.5, 0.5);
 	circleButton->sprite()->uvdim = Point(0.125, 0.125);
 	circleButton->sprite()->frame(frame);
@@ -31,7 +32,8 @@ CircleButton::~CircleButton() {
 }
 
 void CircleButton::update(float deltaTime) {
-	circleButton->sprite()->color = WHITE;
+	circleButton->sprite()->color = color;
+	circleButton->position = pos;
 
 	float subX = (circleButton->position.x - parent->input()->getMouseX());
 	float subY = (circleButton->position.y - parent->input()->getMouseY());

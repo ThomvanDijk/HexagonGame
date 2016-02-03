@@ -16,17 +16,20 @@ using namespace std;
 
 class CircleButton : public Entity {
 	public:
-		CircleButton(Point2 size, Point2 pos, Scene* parent, int frame, Player* player);
+		CircleButton(Point size, Point pos, Scene* parent, int frame, Player* player);
 		virtual ~CircleButton();
 		virtual void update(float deltaTime);
+		virtual void setPos(Point p) { pos = p; }
+		virtual void setColor(RGBAColor c) { color = c; }
 	
 	private:
 		BasicEntity* circleButton;
 		Scene* parent;
 		Player* player;
-		Point2 pos;
-		Point2 size;
+		Point pos;
+		Point size;
 		int frame;
+		RGBAColor color;
 
 };
 

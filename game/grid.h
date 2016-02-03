@@ -28,10 +28,11 @@ class Grid: public Entity {
 		virtual void update(float deltaTime);
 		virtual void setHoverHud(bool h) { hoverHud = h; }
 		virtual void setLoaded(bool b) { loaded = b; }
+		virtual int getSelected() { return selected; }
 
 	private:
 		vector<Building*> buildingList;
-
+		
 		Player* player;
 		Hexagon* hexagon;
 		Scene* parent;
@@ -43,6 +44,7 @@ class Grid: public Entity {
 		int hexWidth;
 		int hexHeight;
 		int lastHovered;
+		int selected;
 };
 
 #endif /* GRID */

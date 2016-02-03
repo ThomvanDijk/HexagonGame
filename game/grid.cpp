@@ -25,6 +25,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 	this->hexWidth = hexWidth;
 
 	lastHovered = 0;
+	selected = 1;
 	hoverHud = false;
 	loaded = false;
 
@@ -59,10 +60,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 }
 
 Grid::~Grid() {
-	//int s = _spritebatch.size();
-	//for (int i = 0; i < s; i++) {
 
-	//}
 }
 
 void Grid::update(float deltaTime) {
@@ -77,11 +75,11 @@ void Grid::update(float deltaTime) {
 		thisHex->color = WHITE;
 		thisHex->update(deltaTime);
 
-		float mousex = parent->input()->getMouseX() + parent->camera()->position.x - SWIDTH / 2;
-		float mousey = parent->input()->getMouseY() + parent->camera()->position.y - SHEIGHT / 2;
+		float mouseX = parent->input()->getMouseX() + parent->camera()->position.x - SWIDTH / 2;
+		float mouseY = parent->input()->getMouseY() + parent->camera()->position.y - SHEIGHT / 2;
 
-		float subX = (thisHex->spriteposition.x - mousex);
-		float subY = (thisHex->spriteposition.y - mousey);
+		float subX = (thisHex->spriteposition.x - mouseX);
+		float subY = (thisHex->spriteposition.y - mouseY);
 
 		float distance = sqrt((subX * subX) + (subY * subY));
 		thisHex->setMouseDistance(distance);
@@ -89,6 +87,7 @@ void Grid::update(float deltaTime) {
 		int selected = player->getSelectedFrame();
 
 		//Detect mouse klick, frame 63 is nothing.
+		//place building
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selected) {
 			int woodCost = buildingList[selected]->getWoodCost();
 			int foodCost = buildingList[selected]->getFoodCost();
@@ -101,9 +100,16 @@ void Grid::update(float deltaTime) {
 				player->gold -= goldCost;
 				player->stone -= stoneCost;
 
-				cout << lastHex->frame() << endl;
-
 				lastHex->frame(selected);
+			}
+			loaded = false;
+		}
+
+		//select buildings
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() == 63 && !hoverHud) {
+			//frame 0 = building farm
+			if (lastHex->frame() == 0) {
+
 			}
 			loaded = false;
 		}

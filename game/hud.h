@@ -25,15 +25,19 @@ class Hud: public Entity {
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 		virtual bool getHoverHud() { return hoverHud; }
+		virtual void setSelected(int s) { selected = s; }
 
 	private:
 		vector<Building*> buildingList;
+		vector<CircleButton*> mainButtonList;
+		CircleButton* wheatFieldButton;
 		BasicEntity* topBanner;
 		BasicEntity* bottomBanner;
 		int numberOfBuildings;
-		CircleButton* circleButton;
+		CircleButton* mainButton;
 		Scene* parent;
 		Player* player;
+		int selected;
 		bool hoverHud;
 
 		Text* woodText;
