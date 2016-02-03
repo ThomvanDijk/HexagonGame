@@ -11,15 +11,17 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	this->player = player;
 	this->parent = parent;
 	this->buildingList = buildingList;
+
 	hoverHud = false;
-	selected = 0;
+	selectedMenu = 0;
+	buttonSize = Point(120, 120);
 
 	//Add the top part.
 	topBanner = new BasicEntity();
 	topBanner->addSprite(AUTOGENWHITE, 0.5, 0);
 	topBanner->sprite()->size = Point(SWIDTH / 1.5, SHEIGHT / 20);
 	topBanner->position = Point(SWIDTH / 2, 0);
-	topBanner->sprite()->color = RED;
+	topBanner->sprite()->color = GRAY;
 	addChild(topBanner);
 
 	//Add the bottom part.
@@ -27,7 +29,7 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	bottomBanner->addSprite(AUTOGENWHITE, 0.5, 1);
 	bottomBanner->sprite()->size = Point(SWIDTH / 1.5, SHEIGHT / 6);
 	bottomBanner->position = Point(SWIDTH / 2, SHEIGHT);
-	bottomBanner->sprite()->color = RED;
+	bottomBanner->sprite()->color = GRAY;
 	addChild(bottomBanner);
 
 	//Add text after the hud elements.
@@ -54,18 +56,15 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	//add mainBuilding buttons
 	numberOfBuildings = buildingList.size() - 1;
 	for (int i = 0; i < numberOfBuildings; i++) {
-		Point size = Point(100, 100);
-		Point pos = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2) + (60 * i) + size.x, SHEIGHT - SHEIGHT / 6 + size.y - 10);
-
-		mainButton = new CircleButton(size, pos, parent, i, player);
+		Point pos = Point(SWIDTH / 2 - (SWIDTH / 1.5) / 2.4 + i * buttonSize.x, SHEIGHT - (SHEIGHT / 6) / 1.9);
+		mainButton = new CircleButton(buttonSize, pos, parent, i, player);
 		mainButton->setColor(RGBAColor(0, 0, 0, 0));
 		addChild(mainButton);
 		mainButtonList.push_back(mainButton);
 	}
 
 	//add farm buttons
-	Point buttonSize = Point(100, 100);
-	Point buttonPos = Point(0, -100);
+	Point buttonPos = Point(0, 0);
 	//61 is the place of wheatfield in spritesheet
 	wheatFieldButton = new CircleButton(buttonSize, buttonPos, parent, 61, player);
 	//set the default color transparent
@@ -95,17 +94,23 @@ void Hud::update(float deltaTime) {
 		hoverHud = false;
 	}
 
+	int s = mainButtonList.size();
+	//Set the pos out of screen to avoid click collision.
+	for (int i = 0; i < s; i++) {
+		mainButtonList[i]->setPos(Point(0, -100));
+	}
+	wheatFieldButton->setPos(Point(0, -100));
+
 	//if no building is selected
-	if (selected == 0) {
-		int s = mainButtonList.size();
+	if (selectedMenu == 0) {
 		for (int i = 0; i < s; i++) {
 			mainButtonList[i]->setColor(WHITE);
+			mainButtonList[i]->setPos(Point(SWIDTH / 2 - (SWIDTH / 1.5) / 2.4 + i * buttonSize.x, SHEIGHT - (SHEIGHT / 6) / 1.9));
 		}
 	}
-
-	if (selected == 1) {
+	if (selectedMenu == 1) {
 		wheatFieldButton->setColor(WHITE);
-		wheatFieldButton->position = Point(SWIDTH / 2 - ((SWIDTH / 1.5) / 2), SHEIGHT - SHEIGHT / 6 - 10);
+		wheatFieldButton->setPos(Point(SWIDTH / 2 - (SWIDTH / 1.5) / 2.4, SHEIGHT - (SHEIGHT / 6) / 1.9));
 	}
 
 	string wood = "Wood: ";

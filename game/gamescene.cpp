@@ -52,7 +52,8 @@ void GameScene::update(float deltaTime) {
 	//Give boolean hoverHud direcly though to setHoverHud in grid.
 	grid->setHoverHud(hud->getHoverHud());
 
-	hud->setSelected(grid->getSelected());
+	//Give the selected menu to hud from grid.
+	hud->setSelectedMenu(grid->getSelectedMenu());
 
 	//text follows camera
 	/*Point2 cam_pos = Point2(camera()->position.x, camera()->position.y);

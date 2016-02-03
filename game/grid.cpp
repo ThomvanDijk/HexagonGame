@@ -25,7 +25,7 @@ Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight,
 	this->hexWidth = hexWidth;
 
 	lastHovered = 0;
-	selected = 1;
+	selectedMenu = 0;
 	hoverHud = false;
 	loaded = false;
 
@@ -84,15 +84,18 @@ void Grid::update(float deltaTime) {
 		float distance = sqrt((subX * subX) + (subY * subY));
 		thisHex->setMouseDistance(distance);
 
-		int selected = player->getSelectedFrame();
+		int selectedFrame = player->getSelectedFrame();
 
 		//Detect mouse klick, frame 63 is nothing.
 		//place building
-		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selected) {
-			int woodCost = buildingList[selected]->getWoodCost();
-			int foodCost = buildingList[selected]->getFoodCost();
-			int goldCost = buildingList[selected]->getGoldCost();
-			int stoneCost = buildingList[selected]->getStoneCost();
+		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selectedFrame) {
+			int woodCost = buildingList[selectedFrame]->getWoodCost();
+			int foodCost = buildingList[selectedFrame]->getFoodCost();
+			int goldCost = buildingList[selectedFrame]->getGoldCost();
+			int stoneCost = buildingList[selectedFrame]->getStoneCost();
+			//Hier iets doen met New Building....
+			//daarnaa in een lijstje stoppen
+			//dat lijstje staat in GameScene want Gamescene heeft Buildings
 
 			if (player->wood >= woodCost && player->food >= foodCost && player->gold >= goldCost && player->stone >= stoneCost) {
 				player->wood -= woodCost;
@@ -100,7 +103,7 @@ void Grid::update(float deltaTime) {
 				player->gold -= goldCost;
 				player->stone -= stoneCost;
 
-				lastHex->frame(selected);
+				lastHex->frame(selectedFrame);
 			}
 			loaded = false;
 		}
@@ -109,7 +112,8 @@ void Grid::update(float deltaTime) {
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() == 63 && !hoverHud) {
 			//frame 0 = building farm
 			if (lastHex->frame() == 0) {
-
+				//selection menu for farm
+				selectedMenu = 1;
 			}
 			loaded = false;
 		}
@@ -118,6 +122,8 @@ void Grid::update(float deltaTime) {
 		if (parent->input()->getMouseDown(1) && loaded) {
 			//Select last frame (nothing).
 			player->setSelectedFrame(63);
+			//resets the menu
+			selectedMenu = 0;
 			loaded = false;
 		}
 

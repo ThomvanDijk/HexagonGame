@@ -25,7 +25,7 @@ class Hud: public Entity {
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 		virtual bool getHoverHud() { return hoverHud; }
-		virtual void setSelected(int s) { selected = s; }
+		virtual void setSelectedMenu(int s) { selectedMenu = s; }
 
 	private:
 		vector<Building*> buildingList;
@@ -37,8 +37,9 @@ class Hud: public Entity {
 		CircleButton* mainButton;
 		Scene* parent;
 		Player* player;
-		int selected;
+		int selectedMenu;
 		bool hoverHud;
+		Point buttonSize;
 
 		Text* woodText;
 		Text* stoneText;
