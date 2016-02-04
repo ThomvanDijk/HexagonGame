@@ -17,8 +17,7 @@
 
 using namespace std;
 
-Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player, vector<Building*> buildingList) : Entity() {
-	this->buildingList = buildingList;
+Grid::Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player) : Entity() {
 	this->parent = parent;
 	this->origin = origin;
 	this->player = player;
@@ -84,18 +83,38 @@ void Grid::update(float deltaTime) {
 		float distance = sqrt((subX * subX) + (subY * subY));
 		thisHex->setMouseDistance(distance);
 
-		int selectedFrame = player->getSelectedFrame();
+		int selectedFrame = player->getSelectedFrame(); 
 
 		//Detect mouse klick, frame 63 is nothing.
 		//place building
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selectedFrame) {
-			int woodCost = buildingList[selectedFrame]->getWoodCost();
-			int foodCost = buildingList[selectedFrame]->getFoodCost();
-			int goldCost = buildingList[selectedFrame]->getGoldCost();
-			int stoneCost = buildingList[selectedFrame]->getStoneCost();
-			//Hier iets doen met New Building....
-			//daarnaa in een lijstje stoppen
-			//dat lijstje staat in GameScene want Gamescene heeft Buildings
+			int numberOfBuildings = 1;
+			if (player->getSelectedFrame() == 0) {
+				farm = new Farm();
+				buildingList.push_back(farm);
+				lastHex->setNumberInList(buildingList.size());
+
+				woodCost = farm->getWoodCost();
+				foodCost = farm->getFoodCost();
+				goldCost = farm->getGoldCost();
+				stoneCost = farm->getStoneCost();
+			}
+
+			if (player->getSelectedFrame() == 61) {
+				wheatField = new WheatField();
+				terrainList.push_back(wheatField);
+				//cout << buildingList[selectedBuilding] << endl;
+				Farm* thisFarm = (Farm*)buildingList[selectedBuilding];
+				//cout << selectedBuilding << endl;
+				thisFarm->addField(wheatField);
+				//buildingList[selectedBuilding]->addField(wheatField);
+				lastHex->setNumberInList(terrainList.size());
+
+				woodCost = wheatField->getWoodCost();
+				foodCost = wheatField->getFoodCost();
+				goldCost = wheatField->getGoldCost();
+				stoneCost = wheatField->getStoneCost();
+			}
 
 			if (player->wood >= woodCost && player->food >= foodCost && player->gold >= goldCost && player->stone >= stoneCost) {
 				player->wood -= woodCost;
@@ -114,6 +133,7 @@ void Grid::update(float deltaTime) {
 			if (lastHex->frame() == 0) {
 				//selection menu for farm
 				selectedMenu = 1;
+				selectedBuilding = lastHex->getNumberInList() - 1;
 			}
 			loaded = false;
 		}
@@ -124,6 +144,7 @@ void Grid::update(float deltaTime) {
 			player->setSelectedFrame(63);
 			//resets the menu
 			selectedMenu = 0;
+			selectedBuilding = -1;
 			loaded = false;
 		}
 

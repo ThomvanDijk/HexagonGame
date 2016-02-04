@@ -19,8 +19,8 @@
 #include "grid.h"
 
 //buildings
-#include "buildings/towncenter.h"
-#include "buildings/farm.h"
+//#include "buildings/towncenter.h"
+//#include "buildings/farm.h"
 
 class GameScene: public SuperScene {
 	public:
@@ -36,12 +36,6 @@ class GameScene: public SuperScene {
 		Grid* grid;
 		Hud* hud;
 		Timer timer;
-
-		vector<Building*> buildingList;
-
-		//buildings
-		TownCenter* townCenter;
-		Farm* farm;
 
 };
 

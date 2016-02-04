@@ -29,16 +29,18 @@ class Hexagon: public Sprite {
 		virtual void update(float deltaTime);
 		virtual int getxCoord() { return xCoord; };
 		virtual int getyCoord() { return yCoord; };
+		virtual void setNumberInList(int i) { numberInList = i; }
+		virtual int getNumberInList() { return numberInList; }
 
 	private:
 		Player* player;
-		vector<Text*> text;
 		Scene* parent;
 		Timer timer;
 		Sprite* hexagon;
 		int xCoord;
 		int yCoord;
 		float mouseDistance;
+		int numberInList;
 };
 
 #endif /* HEXAGON */ 

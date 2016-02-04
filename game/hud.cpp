@@ -7,10 +7,9 @@
 
 using namespace std;
 
-Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity() {
+Hud::Hud(Scene* parent, Player* player) : Entity() {
 	this->player = player;
 	this->parent = parent;
-	this->buildingList = buildingList;
 
 	hoverHud = false;
 	selectedMenu = 0;
@@ -54,7 +53,7 @@ Hud::Hud(Scene* parent, Player* player, vector<Building*> buildingList) : Entity
 	foodText->position = Point(topBanner->position.x - topBanner->sprite()->size.x / 2 + 418, topBanner->position.y + 18);
 
 	//add mainBuilding buttons
-	numberOfBuildings = buildingList.size() - 1;
+	numberOfBuildings = 1;//buildingList.size() - 1;
 	for (int i = 0; i < numberOfBuildings; i++) {
 		Point pos = Point(SWIDTH / 2 - (SWIDTH / 1.5) / 2.4 + i * buttonSize.x, SHEIGHT - (SHEIGHT / 6) / 1.9);
 		mainButton = new CircleButton(buttonSize, pos, parent, i, player);

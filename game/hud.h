@@ -21,14 +21,13 @@ using namespace std;
 
 class Hud: public Entity {
 	public:
-		Hud(Scene* parent, Player* player, vector<Building*> buildingList);
+		Hud(Scene* parent, Player* player);
 		virtual ~Hud();
 		virtual void update(float deltaTime);
 		virtual bool getHoverHud() { return hoverHud; }
 		virtual void setSelectedMenu(int s) { selectedMenu = s; }
 
 	private:
-		vector<Building*> buildingList;
 		vector<CircleButton*> mainButtonList;
 		CircleButton* wheatFieldButton;
 		BasicEntity* topBanner;
