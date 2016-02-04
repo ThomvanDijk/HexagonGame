@@ -88,18 +88,23 @@ void Grid::update(float deltaTime) {
 		//Detect mouse klick, frame 63 is nothing.
 		//place building
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selectedFrame) {
+			bool builded = false;
+
 			if (player->getSelectedFrame() == 0) {
 				farm = new Farm();
 				buildingList.push_back(farm);
+
 				lastHex->setNumberInList(buildingList.size());
 
 				woodCost = farm->getWoodCost();
 				foodCost = farm->getFoodCost();
 				goldCost = farm->getGoldCost();
 				stoneCost = farm->getStoneCost();
+
+				builded = true;
 			}
 
-			if (player->getSelectedFrame() == 61) {
+			if (player->getSelectedFrame() == 61 && !lastHex->getSelected()) {
 				wheatField = new WheatField();
 				terrainList.push_back(wheatField);
 
@@ -112,9 +117,11 @@ void Grid::update(float deltaTime) {
 				foodCost = wheatField->getFoodCost();
 				goldCost = wheatField->getGoldCost();
 				stoneCost = wheatField->getStoneCost();
+
+				builded = true;
 			}
 
-			if (player->wood >= woodCost && player->food >= foodCost && player->gold >= goldCost && player->stone >= stoneCost) {
+			if (player->wood >= woodCost && player->food >= foodCost && player->gold >= goldCost && player->stone >= stoneCost && builded) {
 				player->wood -= woodCost;
 				player->food -= foodCost;
 				player->gold -= goldCost;
@@ -122,24 +129,29 @@ void Grid::update(float deltaTime) {
 
 				lastHex->frame(selectedFrame);
 			}
+			builded = false;
 			loaded = false;
 		}
 
 		//select buildings
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() == 63 && !hoverHud) {
+
 			//frame 0 = building farm
 			if (lastHex->frame() == 0) {
 				//selection menu for farm
 				selectedMenu = 1;
 
-				//Set previous selected hex to false (all the hexes because I am lazy).
+				//Here everything is selected exept for the tiles around the farm because there can be placed fields.
 				for (int j = 0; j < batchSize; j++) {
 					Hexagon* temp = (Hexagon*)_spritebatch[j];
-					temp->setSelected(false);
+					temp->setSelected(true);
+					if (lastHex->getxCoord() == temp->getxCoord() - 1 && lastHex->getyCoord() == temp->getyCoord()) { temp->setSelected(false); }
+					if (lastHex->getxCoord() == temp->getxCoord() && lastHex->getyCoord() == temp->getyCoord() - 1) { temp->setSelected(false); }
+					if (lastHex->getxCoord() == temp->getxCoord() + 1 && lastHex->getyCoord() == temp->getyCoord() - 1) { temp->setSelected(false); }
+					if (lastHex->getxCoord() == temp->getxCoord() + 1 && lastHex->getyCoord() == temp->getyCoord()) { temp->setSelected(false); }
+					if (lastHex->getxCoord() == temp->getxCoord() && lastHex->getyCoord() == temp->getyCoord() + 1) { temp->setSelected(false); }
+					if (lastHex->getxCoord() == temp->getxCoord() - 1 && lastHex->getyCoord() == temp->getyCoord() + 1) { temp->setSelected(false); }
 				}
-
-				//Here the selected hex is set.
-				lastHex->setSelected(true);
 				selectedBuilding = lastHex->getNumberInList() - 1;
 			}
 			loaded = false;
@@ -147,6 +159,10 @@ void Grid::update(float deltaTime) {
 
 		//Deselect building
 		if (parent->input()->getMouseDown(1) && loaded) {
+			for (int k = 0; k < batchSize; k++) {
+				Hexagon* temp2 = (Hexagon*)_spritebatch[k];
+				temp2->setSelected(false);
+			}
 			//Select last frame (nothing).
 			player->setSelectedFrame(63);
 			//resets the menu
