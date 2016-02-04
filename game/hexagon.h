@@ -31,6 +31,8 @@ class Hexagon: public Sprite {
 		virtual int getyCoord() { return yCoord; };
 		virtual void setNumberInList(int i) { numberInList = i; }
 		virtual int getNumberInList() { return numberInList; }
+		virtual void setSelected(bool b) { selected = b; }
+		virtual bool getSelected() { return selected; }
 
 	private:
 		Player* player;
@@ -41,6 +43,7 @@ class Hexagon: public Sprite {
 		int yCoord;
 		float mouseDistance;
 		int numberInList;
+		bool selected;
 };
 
 #endif /* HEXAGON */ 

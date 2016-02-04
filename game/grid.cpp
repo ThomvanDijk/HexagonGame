@@ -88,7 +88,6 @@ void Grid::update(float deltaTime) {
 		//Detect mouse klick, frame 63 is nothing.
 		//place building
 		if (parent->input()->getMouseDown(0) && loaded && player->getSelectedFrame() != 63 && !hoverHud && lastHex->frame() != selectedFrame) {
-			int numberOfBuildings = 1;
 			if (player->getSelectedFrame() == 0) {
 				farm = new Farm();
 				buildingList.push_back(farm);
@@ -103,11 +102,10 @@ void Grid::update(float deltaTime) {
 			if (player->getSelectedFrame() == 61) {
 				wheatField = new WheatField();
 				terrainList.push_back(wheatField);
-				//cout << buildingList[selectedBuilding] << endl;
+
 				Farm* thisFarm = (Farm*)buildingList[selectedBuilding];
-				//cout << selectedBuilding << endl;
 				thisFarm->addField(wheatField);
-				//buildingList[selectedBuilding]->addField(wheatField);
+
 				lastHex->setNumberInList(terrainList.size());
 
 				woodCost = wheatField->getWoodCost();
@@ -133,6 +131,15 @@ void Grid::update(float deltaTime) {
 			if (lastHex->frame() == 0) {
 				//selection menu for farm
 				selectedMenu = 1;
+
+				//Set previous selected hex to false (all the hexes because I am lazy).
+				for (int j = 0; j < batchSize; j++) {
+					Hexagon* temp = (Hexagon*)_spritebatch[j];
+					temp->setSelected(false);
+				}
+
+				//Here the selected hex is set.
+				lastHex->setSelected(true);
 				selectedBuilding = lastHex->getNumberInList() - 1;
 			}
 			loaded = false;

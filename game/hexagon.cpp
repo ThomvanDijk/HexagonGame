@@ -26,6 +26,7 @@ Hexagon::Hexagon(Scene* parent, int xCoord, int yCoord, float xPos, float yPos, 
 
 	numberInList = 0;
 	mouseDistance = 0;
+	selected = false;
 
 	setupSprite("assets/sprite_sheet.tga", 0.5, 0.78125, 0.125, 0.125, 0, 0);
 	spriteposition = Point(xPos, yPos);
@@ -37,5 +38,10 @@ Hexagon::~Hexagon() {
 }
 
 void Hexagon::update(float deltaTime) {
-	
+	if (selected) {
+		color = GRAY;
+	}
+	else {
+		color = WHITE;
+	}
 }
