@@ -5,7 +5,7 @@
 
 #include "towncenter.h"
 
-TownCenter::TownCenter() : Building() {
+TownCenter::TownCenter(Player* player) : Building(player) {
 	placed = false;
 }
 

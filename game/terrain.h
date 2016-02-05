@@ -21,14 +21,22 @@ class Terrain : public Entity {
 		virtual int getGoldCost() { return goldCost; };
 		virtual int getStoneCost() { return stoneCost; };
 
+		virtual int getWoodYield() { return woodYield; };
+		virtual int getFoodYield() { return foodYield; };
+		virtual int getGoldYield() { return goldYield; };
+		virtual int getStoneYield() { return stoneYield; };
+
 	//The classes who extend building can use these variables because of protected.
 	protected:
-		int frame;
-
 		int woodCost;
 		int foodCost;
 		int goldCost;
 		int stoneCost;
+
+		int woodYield;
+		int foodYield;
+		int goldYield;
+		int stoneYield;
 
 };
 

@@ -6,12 +6,15 @@
 #include "terrain.h"
 
 Terrain::Terrain() : Entity() {
-	frame = 0;
-
 	woodCost = 0;
 	foodCost = 0;
 	goldCost = 0;
 	stoneCost = 0;
+
+	woodYield = 0;
+	foodYield = 0;
+	goldYield = 0;
+	stoneYield = 0;
 }
 
 Terrain::~Terrain() {

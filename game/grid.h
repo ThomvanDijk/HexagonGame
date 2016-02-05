@@ -33,9 +33,9 @@ class Grid: public Entity {
 		Grid(Scene* parent, Point2* origin, int size, int hexWidth, int hexHeight, float padding, Player* player);
 		virtual ~Grid();
 		virtual void update(float deltaTime);
-		virtual void setHoverHud(bool h) { hoverHud = h; }
-		virtual void setLoaded(bool b) { loaded = b; }
-		virtual int getSelectedMenu() { return selectedMenu; }
+		virtual void setHoverHud(bool h) { hoverHud = h; };
+		virtual void setLoaded(bool b) { loaded = b; };
+		virtual int getSelectedMenu() { return selectedMenu; };
 
 	private:
 		Player* player;
@@ -43,13 +43,13 @@ class Grid: public Entity {
 		Scene* parent;
 		Point2* origin;
 
+		int lastHovered;
+		int selectedMenu;
 		Timer timer;
 		bool loaded;
 		bool hoverHud;
 		int hexWidth;
 		int hexHeight;
-		int lastHovered;
-		int selectedMenu;
 
 		int woodCost;
 		int foodCost;

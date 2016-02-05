@@ -13,10 +13,10 @@ using namespace std;
 
 class Farm : public Building {
 	public:
-		Farm();
+		Farm(Player* player);
 		virtual ~Farm();
 		virtual void update(float deltaTime);
-		virtual void addField(Terrain* t) { fieldList.push_back(t); }
+		virtual void addField(Terrain* t) { fieldList.push_back(t); };
 
 	protected:
 		vector<Terrain*> fieldList;

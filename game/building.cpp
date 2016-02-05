@@ -5,11 +5,19 @@
 
 #include "building.h"
 
-Building::Building() : Entity() {
+Building::Building(Player* player) : Entity() {
+	this->player = player;
+	time = 0;
+
 	woodCost = 0;
 	foodCost = 0;
 	goldCost = 0;
 	stoneCost = 0;
+
+	woodYield = 0;
+	foodYield = 0;
+	goldYield = 0;
+	stoneYield = 0;
 }
 
 Building::~Building() {

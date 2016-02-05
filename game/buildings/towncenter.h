@@ -12,7 +12,7 @@ using namespace std;
 
 class TownCenter : public Building {
 	public:
-		TownCenter();
+		TownCenter(Player* player);
 		virtual ~TownCenter();
 		virtual void update(float deltaTime);
 

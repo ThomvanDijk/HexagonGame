@@ -67,6 +67,12 @@ void Grid::update(float deltaTime) {
 	//Due to a bug in rt2d I need to have a variable loaded.
 	if (loaded) { loaded = true; }
 
+	//Update buildings.
+	int buildingListSize = buildingList.size();
+	for (int l = 0; l < buildingListSize; l++) {
+		buildingList[l]->update(deltaTime);
+	}
+
 	for (int i = 0; i < batchSize; i++) {
 		Hexagon* thisHex = (Hexagon*)_spritebatch[i];
 		Hexagon* lastHex = (Hexagon*)_spritebatch[lastHovered];
@@ -91,12 +97,12 @@ void Grid::update(float deltaTime) {
 			bool builded = false;
 
 			if (player->getSelectedFrame() == 0) {
-				farm = new Farm();
+				farm = new Farm(player);
 				buildingList.push_back(farm);
 
 				lastHex->setNumberInList(buildingList.size());
 
-				woodCost = farm->getWoodCost();
+				woodCost = farm->getWoodCost();	
 				foodCost = farm->getFoodCost();
 				goldCost = farm->getGoldCost();
 				stoneCost = farm->getStoneCost();

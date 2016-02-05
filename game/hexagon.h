@@ -29,10 +29,10 @@ class Hexagon: public Sprite {
 		virtual void update(float deltaTime);
 		virtual int getxCoord() { return xCoord; };
 		virtual int getyCoord() { return yCoord; };
-		virtual void setNumberInList(int i) { numberInList = i; }
-		virtual int getNumberInList() { return numberInList; }
-		virtual void setSelected(bool b) { selected = b; }
-		virtual bool getSelected() { return selected; }
+		virtual void setNumberInList(int i) { numberInList = i; };
+		virtual int getNumberInList() { return numberInList; };
+		virtual void setSelected(bool b) { selected = b; };
+		virtual bool getSelected() { return selected; };
 
 	private:
 		Player* player;
